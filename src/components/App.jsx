@@ -4,9 +4,22 @@ import { Home } from 'pages/Home';
 import { Contacts } from 'pages/Contacts';
 import { LogIn } from 'pages/LogIn';
 import { Registration } from 'pages/Registration';
+import { refreshUser } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'components/hooks';
+import { useEffect } from 'react';
 
 export const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <div>Refreshing</div>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index path="/" element={<Home />} />
