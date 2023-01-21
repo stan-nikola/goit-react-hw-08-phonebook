@@ -9,7 +9,6 @@ export const Registration = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e, { resetForm }) => {
-    console.log(e);
     dispatch(register(e));
   };
 

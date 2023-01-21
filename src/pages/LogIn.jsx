@@ -9,7 +9,6 @@ export const LogIn = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e, { resetForm }) => {
-    console.log('LogIn', e);
     dispatch(logIn(e));
   };
 

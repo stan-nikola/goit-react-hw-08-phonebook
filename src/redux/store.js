@@ -15,9 +15,9 @@ import { authPresistedReducer } from './auth/authSlice';
 
 export const store = configureStore({
   reducer: {
+    auth: authPresistedReducer,
     contacts: contactsReducer,
     filter: contactsFilterReducer,
-    auth: authPresistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

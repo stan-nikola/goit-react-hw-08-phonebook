@@ -10,7 +10,7 @@ const persistConfig = {
 };
 
 export const authSlice = createSlice({
-  name: 'authorization',
+  name: 'auth',
   initialState: {
     user: { name: null, email: null },
     token: null,
