@@ -6,13 +6,26 @@ import 'react-phone-input-2/lib/style.css';
 import { addContact } from 'redux/contacts/operations';
 import { useContacts } from 'components/hooks/useContacts';
 import { updateContact } from './../../redux/contacts/operations';
+import {
+  CloseModalBtn,
+  Label,
+  LabelName,
+  ModalTitle,
+  InputName,
+} from './ContactForm.styled';
+import { FiX } from 'react-icons/fi';
+import { MdOutlineContactPhone } from 'react-icons/md';
+import { Box } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 export const ContactForm = ({ modalToggle, contactId }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [submitButtonText, setSubmitButtonText] = useState('');
+
   const dispatch = useDispatch();
 
-  const { contacts } = useContacts();
+  const { contacts, contactOperationLoading } = useContacts(null);
 
   useEffect(() => {
     if (!contactId) return;
@@ -23,36 +36,66 @@ export const ContactForm = ({ modalToggle, contactId }) => {
     setNumber(finnedContactById.number);
   }, [contactId, contacts]);
 
+  useEffect(() => {
+    if (!contactId) {
+      setSubmitButtonText('Add contact');
+    } else {
+      setSubmitButtonText('Update contact');
+    }
+  }, [contactId]);
+
   const handleSubmit = e => {
     e.preventDefault();
 
     if (!contactId) {
-      dispatch(addContact({ name, number }));
-    } else {
-      dispatch(updateContact({ contactId, name, number }));
+      return dispatch(addContact({ name, number }));
     }
+    dispatch(updateContact({ contactId, name, number }));
   };
 
   return (
     <>
-      <button type="button" onClick={modalToggle}>
-        Close
-      </button>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={e => setName(e.currentTarget.value)}
-        />
-        <PhoneInput
-          type="phone"
-          country={'ua'}
-          value={number}
-          onChange={e => setNumber(e)}
-        />
-        <button type="submit">Add contact</button>
-      </form>
+      <ModalTitle>Enter name and phone number</ModalTitle>
+      <CloseModalBtn type="button" onClick={modalToggle}>
+        <FiX />
+      </CloseModalBtn>
+      <Box
+        as="form"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        onSubmit={handleSubmit}
+      >
+        <Label>
+          <LabelName>Name</LabelName>
+          <InputName
+            type="text"
+            name="name"
+            value={name}
+            onChange={e => setName(e.currentTarget.value)}
+          />
+        </Label>
+        <Label>
+          <LabelName>Number</LabelName>
+          <PhoneInput
+            type="phone"
+            country={'ua'}
+            value={number}
+            onChange={e => setNumber(e)}
+          />
+        </Label>
+        <Button
+          marginTop="60px"
+          type="submit"
+          isLoading={contactOperationLoading}
+          loadingText="Working...."
+          colorScheme="teal"
+          variant="solid"
+          leftIcon={<MdOutlineContactPhone />}
+        >
+          {submitButtonText}
+        </Button>
+      </Box>
     </>
   );
 };

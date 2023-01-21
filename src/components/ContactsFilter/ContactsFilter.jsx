@@ -1,5 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { contactsFilter } from 'redux/contacts/filterSlice';
+import { Input } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
+import { FilterHeader } from './ContactsFilter.styled.';
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
@@ -8,9 +19,31 @@ export const ContactsFilter = () => {
     dispatch(contactsFilter(e.currentTarget.value));
   };
   return (
-    <>
-      <h3>Contacts filter</h3>
-      <input type="text" name="filter" onChange={handleChange} />
-    </>
+    <Accordion bg="secondaryBg" width="400px" defaultIndex={[0]} allowMultiple>
+      <AccordionItem>
+        <h2>
+          <AccordionButton _expanded={{ bg: '#2470A0', color: 'white' }}>
+            <Box as="span" flex="1" textAlign="center">
+              <FilterHeader>Contacts filter</FilterHeader>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={2}>
+          {
+            <Input
+              ml="20px"
+              type="text"
+              name="filter"
+              onChange={handleChange}
+              width="300px"
+              variant="filled"
+              placeholder="Enter name to find"
+              p={2}
+            />
+          }
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
   );
 };

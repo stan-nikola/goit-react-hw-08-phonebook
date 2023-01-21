@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import { createPortal } from 'react-dom';
+import { Backdrop, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -19,9 +20,9 @@ export function Modal({ onClose, children }) {
     }
   };
   return createPortal(
-    <div onClick={handleMultiClose}>
-      <div>{children}</div>
-    </div>,
+    <Backdrop onClick={handleMultiClose}>
+      <ModalWindow>{children}</ModalWindow>
+    </Backdrop>,
     modalRoot
   );
 }
