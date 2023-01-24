@@ -3,13 +3,11 @@ import { deleteContact } from 'redux/contacts/operations';
 import { useState } from 'react';
 import {
   ContactBtn,
-  ContactItem,
   ContactList,
   DeleteButton,
   EditButton,
 } from './ContactsList.styled';
 import { Box } from '@chakra-ui/react';
-
 import { Spinner } from '@chakra-ui/react';
 
 export const ContactListItem = ({ modalToggle, id, name, number }) => {
@@ -23,10 +21,9 @@ export const ContactListItem = ({ modalToggle, id, name, number }) => {
   };
   return (
     <ContactList>
-      <ContactItem>
-        Name:<span>{name}</span> Number:<span>{number}</span>
-      </ContactItem>
-      <Box display="flex">
+      <p>{name}</p>
+      <p>{number}</p>
+      <Box display="flex" minWidth="20%" justifyContent="flex-end">
         <ContactBtn type="button" onClick={() => modalToggle(id)}>
           <EditButton />
         </ContactBtn>

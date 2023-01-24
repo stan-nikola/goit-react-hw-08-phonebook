@@ -5,9 +5,6 @@ import { ContactListItem } from './ContactsListItem';
 
 export const ContactsList = ({ modalToggle }) => {
   const { contacts, filter } = useContacts();
-  console.log(filter);
-
-  console.log('contacts', contacts);
 
   const visibleContacts = useMemo(
     () =>

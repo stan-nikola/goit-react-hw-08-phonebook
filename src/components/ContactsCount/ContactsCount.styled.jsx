@@ -10,7 +10,7 @@ export const ContactsCountTitle = styled.h3`
     margin-right: ${p => p.theme.space[3]};
   }
   svg {
-    margin-right: 80px;
+    margin: 0 65px 0 20px;
     width: 40px;
     height: 40px;
   }

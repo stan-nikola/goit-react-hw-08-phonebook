@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-export const ContactAddEditForm = styled.form``;
 
 export const CloseModalBtn = styled.button`
   position: absolute;
@@ -43,7 +42,6 @@ export const Label = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;
-
   &:not(:last-child) {
     margin-bottom: ${p => p.theme.space[3]};
   }

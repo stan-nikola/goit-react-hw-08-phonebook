@@ -7,12 +7,14 @@ export const ContactsCount = () => {
   const { contacts } = useContacts();
 
   return (
-    <Box bg="secondaryBg" p={2} borderBottom="3px solid white ">
+    <Box bg="secondaryBg" height={14} p={2} mb={1}>
       <ContactsCountTitle>
-        <Box display="flex" justifyContent="flex-start" alignItems="center">
+        <Box display="flex" alignItems="center">
           <FcBusinessContact />
-          <span>{contacts.length}</span>
-          <p>contacts</p>
+
+          <p>
+            <span>{contacts.length}</span>contacts
+          </p>
         </Box>
       </ContactsCountTitle>
     </Box>

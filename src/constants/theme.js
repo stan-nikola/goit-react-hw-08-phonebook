@@ -9,14 +9,6 @@ const {
   AccordionPanel,
   AccordionIcon,
   Spinner,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Lorem,
 } = chakraTheme.components;
 
 export const theme = extendBaseTheme({
@@ -29,14 +21,6 @@ export const theme = extendBaseTheme({
     AccordionPanel,
     AccordionIcon,
     Spinner,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Lorem,
   },
 
   colors: {

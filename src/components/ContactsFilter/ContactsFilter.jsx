@@ -10,7 +10,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
-import { FilterHeader } from './ContactsFilter.styled.';
+import { FilterHeader, FilterIcon } from './ContactsFilter.styled.';
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
@@ -22,8 +22,18 @@ export const ContactsFilter = () => {
     <Accordion bg="secondaryBg" width="400px" defaultIndex={[0]} allowMultiple>
       <AccordionItem>
         <h2>
-          <AccordionButton _expanded={{ bg: '#2470A0', color: 'white' }}>
-            <Box as="span" flex="1" textAlign="center">
+          <AccordionButton
+            height={14}
+            _expanded={{ bg: '#2470A0', color: 'white' }}
+          >
+            <Box
+              as="span"
+              display="flex"
+              alignItems="center"
+              flex="1"
+              textAlign="center"
+            >
+              <FilterIcon width="24px" height="24px" />
               <FilterHeader>Contacts filter</FilterHeader>
             </Box>
             <AccordionIcon />

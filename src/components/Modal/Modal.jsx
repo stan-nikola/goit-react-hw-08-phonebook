@@ -5,7 +5,7 @@ import { Backdrop, ModalWindow } from './Modal.styled';
 
 const modalRoot = document.getElementById('modal-root');
 
-export function Modal({ onClose, children }) {
+export function Modal({ modalToggle, children }) {
   useEffect(() => {
     window.addEventListener('keydown', handleMultiClose);
 
@@ -16,7 +16,7 @@ export function Modal({ onClose, children }) {
 
   const handleMultiClose = e => {
     if (e.currentTarget === e.target || e.code === 'Escape') {
-      onClose();
+      modalToggle();
     }
   };
   return createPortal(
@@ -28,7 +28,7 @@ export function Modal({ onClose, children }) {
 }
 
 Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  modalToggle: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

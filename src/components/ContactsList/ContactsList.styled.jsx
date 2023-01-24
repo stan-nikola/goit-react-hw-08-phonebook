@@ -5,23 +5,23 @@ export const ContactList = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 32px;
+  height: 40px;
   min-width: 450px;
   text-align: center;
 
   padding: ${p => p.theme.space[2]};
   background-color: ${p => p.theme.colors.secondaryBg};
+  p {
+    font-weight: ${p => p.theme.fontWeights.bold};
+    text-transform: capitalize;
+    font-size: ${p => p.theme.fontSizes.m};
+    min-width: 40%;
+  }
   &:nth-of-type(2n + 1) {
     background-color: ${p => p.theme.colors.thirdBg};
   }
 `;
-export const ContactItem = styled.p`
-  font-weight: ${p => p.theme.fontWeights.bold};
-  span {
-    margin-left: ${p => p.theme.space[3]};
-    font-size: ${p => p.theme.fontSizes.s};
-  }
-`;
+
 export const EditButton = styled(BsFillPencilFill)`
   fill: #4271f3;
   width: 18px;

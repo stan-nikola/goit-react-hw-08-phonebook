@@ -5,8 +5,9 @@ import { ContactForm } from '../components/ContactForm/ContactForm';
 import { ContactsList } from './../components/ContactsList/ContactsList';
 import { fetchContacts } from 'redux/contacts/operations';
 import { ContactsFilter } from 'components/ContactsFilter/ContactsFilter';
-import { Box, Button } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { ContactsCount } from './../components/ContactsCount/ContactsCount';
+import { AddContactButton } from './../components/AddContactButton/AddContactButton';
 
 export const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -20,6 +21,10 @@ export const Contacts = () => {
 
   const modalToggle = e => {
     setModalShow(!modalShow);
+    if (typeof e === 'object') {
+      setContactId(null);
+      return;
+    }
     setContactId(e);
   };
 
@@ -28,30 +33,13 @@ export const Contacts = () => {
       <Box display="flex" flexDirection="column">
         <ContactsCount />
         <ContactsFilter />
-
-        <Button
-          textAlign="center"
-          borderRadius="none"
-          mt={4}
-          type="button"
-          onClick={() => setModalShow(!modalShow)}
-          isLoading={false}
-          loadingText="Loading"
-          colorScheme="teal"
-          variant="solid"
-          spinnerPlacement="start"
-        >
-          Add Contact
-        </Button>
+        <AddContactButton modalToggle={modalToggle} />
       </Box>
 
       <ContactsList modalToggle={modalToggle} />
       {modalShow && (
-        <Modal onClose={() => setModalShow(!modalShow)}>
-          <ContactForm
-            modalToggle={() => setModalShow(!modalShow)}
-            contactId={contactId}
-          />
+        <Modal modalToggle={modalToggle}>
+          <ContactForm modalToggle={modalToggle} contactId={contactId} />
         </Modal>
       )}
     </Box>

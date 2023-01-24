@@ -15,9 +15,9 @@ export const ModalWindow = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  min-height: 450px;
+  min-height: 430px;
   min-width: 400px;
   padding: ${p => p.theme.space[3]};
-  background-color: #ffe4c4;
+  background-color: ${p => p.theme.colors.secondaryBg};
   box-shadow: ${p => p.theme.shadows.items};
 `;

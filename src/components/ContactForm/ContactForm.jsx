@@ -6,6 +6,7 @@ import 'react-phone-input-2/lib/style.css';
 import { addContact } from 'redux/contacts/operations';
 import { useContacts } from 'components/hooks/useContacts';
 import { updateContact } from './../../redux/contacts/operations';
+
 import {
   CloseModalBtn,
   Label,
@@ -21,34 +22,54 @@ import { Button } from '@chakra-ui/react';
 export const ContactForm = ({ modalToggle, contactId }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [submitButtonText, setSubmitButtonText] = useState('');
-
+  const [submitButtonText, setSubmitButtonText] = useState('Add contact');
+  const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
-
-  const { contacts, contactOperationLoading } = useContacts(null);
-
-  useEffect(() => {
-    if (!contactId) return;
-    const finnedContactById = contacts.find(
-      contact => contact.id === contactId
-    );
-    setName(finnedContactById.name);
-    setNumber(finnedContactById.number);
-  }, [contactId, contacts]);
+  const { contacts, contactOperationLoading } = useContacts();
 
   useEffect(() => {
-    if (!contactId) {
-      setSubmitButtonText('Add contact');
-    } else {
+    if (contactId) {
       setSubmitButtonText('Update contact');
+      const finnedContactById = contacts.find(
+        contact => contact.id === contactId
+      );
+      setName(finnedContactById.name);
+      setNumber(finnedContactById.number);
     }
-  }, [contactId]);
+  }, [contactId, contacts]);
+  useEffect(() => {
+    if (contactOperationLoading) {
+      return () => {
+        setName('');
+        setNumber('');
+        modalToggle();
+      };
+    }
+  }, [contactOperationLoading, modalToggle]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
+    const duplicateContactData = contacts.filter(
+      contact => contact.name === name || contact.number === number
+    );
+
+    console.log(duplicateContactData);
+
+    console.log(duplicateContactData.name === name);
+    console.log(duplicateContactData.number === number);
+
+    if (
+      duplicateContactData.name === name &&
+      duplicateContactData.number === number
+    ) {
+      setErrorMessage('name is exist');
+      return;
+    }
+
     if (!contactId) {
-      return dispatch(addContact({ name, number }));
+      dispatch(addContact({ name, number }));
+      return;
     }
     dispatch(updateContact({ contactId, name, number }));
   };
@@ -64,6 +85,9 @@ export const ContactForm = ({ modalToggle, contactId }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
+        onChange={() => {
+          setErrorMessage(null);
+        }}
         onSubmit={handleSubmit}
       >
         <Label>
@@ -72,7 +96,9 @@ export const ContactForm = ({ modalToggle, contactId }) => {
             type="text"
             name="name"
             value={name}
-            onChange={e => setName(e.currentTarget.value)}
+            onChange={e => {
+              setName(e.currentTarget.value);
+            }}
           />
         </Label>
         <Label>
@@ -84,8 +110,11 @@ export const ContactForm = ({ modalToggle, contactId }) => {
             onChange={e => setNumber(e)}
           />
         </Label>
+        <p>{errorMessage}</p>
+
         <Button
           marginTop="60px"
+          isDisabled={errorMessage}
           type="submit"
           isLoading={contactOperationLoading}
           loadingText="Working...."
@@ -103,3 +132,17 @@ export const ContactForm = ({ modalToggle, contactId }) => {
 ContactForm.propTypes = {
   modalToggle: PropTypes.func.isRequired,
 };
+
+//  const onHandleFocus = e => {
+//    console.log(e.currentTarget.name);
+//    // console.log(e.target.value.replace(/[{(/ /)}]/g, '').slice(1));
+//    // console.log(typeof number);
+//    // console.log(typeof e.target.value.replace(/[{(/ /)}]/g, '').slice(1));
+//    if (
+//      e.target.value === name &&
+//      e.target.value.replace(/[{(/ /)}]/g, '').slice(1) === number
+//    ) {
+//      console.log('error');
+//      return;
+//    }
+//  };
