@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import PhoneInput from 'react-phone-input-2';
+
 import 'react-phone-input-2/lib/style.css';
 import { addContact } from 'redux/contacts/operations';
 import { useContacts } from 'components/hooks/useContacts';
@@ -9,15 +9,16 @@ import { updateContact } from './../../redux/contacts/operations';
 
 import {
   CloseModalBtn,
+  InputName,
   Label,
   LabelName,
   ModalTitle,
-  InputName,
 } from './ContactForm.styled';
 import { FiX } from 'react-icons/fi';
 import { MdOutlineContactPhone } from 'react-icons/md';
 import { Box } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
+import PhoneInput from 'react-phone-input-2';
 
 export const ContactForm = ({ modalToggle, contactId }) => {
   const [name, setName] = useState('');
@@ -49,21 +50,24 @@ export const ContactForm = ({ modalToggle, contactId }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setErrorMessage('');
 
     const duplicateContactData = contacts.filter(
-      contact => contact.name === name || contact.number === number
+      contact => contact.name === name && contact.number === number
     );
 
-    console.log(duplicateContactData);
+    if (name.length >= 20 || name.length <= 2) {
+      setErrorMessage('Name is to short or large');
+      return;
+    }
 
-    console.log(duplicateContactData.name === name);
-    console.log(duplicateContactData.number === number);
+    if (number.length < 12) {
+      setErrorMessage('number is not valid');
+      return;
+    }
 
-    if (
-      duplicateContactData.name === name &&
-      duplicateContactData.number === number
-    ) {
-      setErrorMessage('name is exist');
+    if (duplicateContactData.length >= 1) {
+      setErrorMessage(`${name} with ${number} already exist`);
       return;
     }
 
@@ -104,6 +108,13 @@ export const ContactForm = ({ modalToggle, contactId }) => {
         <Label>
           <LabelName>Number</LabelName>
           <PhoneInput
+            isValid={value => {
+              if (value.length < 12) {
+                return;
+              } else {
+                return true;
+              }
+            }}
             type="phone"
             country={'ua'}
             value={number}
