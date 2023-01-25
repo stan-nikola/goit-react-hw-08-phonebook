@@ -30,6 +30,8 @@ export const theme = extendBaseTheme({
     accent: '#FAD3CF',
     secondaryBg: '#d2dfff',
     thirdBg: '#b5c1dd',
+    errorBg: '#d79f9f',
+    error: '#FAF0F0',
   },
   space: [
     '0px',
@@ -57,7 +59,7 @@ export const theme = extendBaseTheme({
   },
   borders: {
     none: 'none',
-    light: '2px solid',
+    light: '1px solid',
     normal: '3px solid',
   },
   radii: { none: '0', normal: '4px', round: '50%' },

@@ -15,7 +15,6 @@ export const AppBar = () => {
       display="flex"
       justifyContent="space-between"
       bg="primary"
-      mb={4}
     >
       <div>
         <Navigation />

@@ -12,7 +12,10 @@ export const registerSchema = yup.object({
     .string()
     .email('Must be a valid email Example: my.mail@mail.com')
     .required('Please enter e-mail '),
-  password: yup.string().required('Please enter password'),
+  password: yup
+    .string()
+    .min(6, 'Password must contain at least 7 characters')
+    .required('Please enter password'),
 });
 
 export const logInSchema = yup.object({
@@ -22,3 +25,5 @@ export const logInSchema = yup.object({
     .required('Please enter email'),
   password: yup.string().required('Please enter password'),
 });
+
+export const mailFormat = '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';

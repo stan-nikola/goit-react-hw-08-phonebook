@@ -29,7 +29,7 @@ export const Contacts = () => {
   };
 
   return (
-    <Box pl={4} pr={4} display="flex">
+    <Box p={4} display="flex">
       <Box display="flex" flexDirection="column">
         <ContactsCount />
         <ContactsFilter />

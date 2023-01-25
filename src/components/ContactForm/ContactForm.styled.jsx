@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 export const CloseModalBtn = styled.button`
   position: absolute;
@@ -42,18 +43,18 @@ export const Label = styled.label`
 
 export const LabelName = styled.span`
   font-weight: ${p => p.theme.fontWeights.bold};
-  margin-bottom: ${p => p.theme.space[2]}px;
+  margin-bottom: ${p => p.theme.space[2]};
 `;
 
 function nameInputBorderColorChange({ value }) {
   if (value.length <= 2 || value.length >= 20) {
-    return '#d79f9f';
+    return p => p.theme.colors.errorBg;
   }
   return '#CACACA';
 }
 function nameInputBgColorChange({ value }) {
   if (value.length <= 2 || value.length >= 20) {
-    return '#FAF0F0';
+    return p => p.theme.colors.error;
   }
 }
 
@@ -63,8 +64,38 @@ export const InputName = styled.input`
   border-radius: 5px;
   padding: 2px 10px;
   outline: none;
-
+  transition: border-color 250ms linear, background-color 250ms linear;
   border: 1px solid;
+  border-radius: 0;
+
   border-color: ${nameInputBorderColorChange};
   background-color: ${nameInputBgColorChange};
+`;
+export const ErrorMessage = styled.p`
+  position: absolute;
+  bottom: 100px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 10;
+  width: 282px;
+  font-style: italic;
+  font-size: ${p => p.theme.fontSizes.s};
+  text-align: center;
+  border: ${p => p.theme.borders.light};
+  border-color: ${p => p.theme.colors.errorBg};
+  padding: ${p => p.theme.space[1]};
+  background-color: ${p => p.theme.colors.error};
+  border-radius: ${p => p.theme.radii.normal};
+`;
+
+export const ErrorIcon = styled(FiAlertTriangle)`
+  position: absolute;
+  top: -11px;
+  left: -11px;
+
+  width: 20px;
+  height: 20px;
+  fill: yellow;
+  border: none;
+  color: ${p => p.theme.colors.secondaryBorder};
 `;

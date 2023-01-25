@@ -9,6 +9,8 @@ import { updateContact } from './../../redux/contacts/operations';
 
 import {
   CloseModalBtn,
+  ErrorIcon,
+  ErrorMessage,
   InputName,
   Label,
   LabelName,
@@ -50,19 +52,19 @@ export const ContactForm = ({ modalToggle, contactId }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setErrorMessage('');
+    setErrorMessage(null);
 
     const duplicateContactData = contacts.filter(
       contact => contact.name === name && contact.number === number
     );
 
     if (name.length >= 20 || name.length <= 2) {
-      setErrorMessage('Name is to short or large');
+      setErrorMessage('Name is to short or to large');
       return;
     }
 
     if (number.length < 12) {
-      setErrorMessage('number is not valid');
+      setErrorMessage('Number is not valid');
       return;
     }
 
@@ -108,6 +110,7 @@ export const ContactForm = ({ modalToggle, contactId }) => {
         <Label>
           <LabelName>Number</LabelName>
           <PhoneInput
+            inputStyle={{ borderRadius: '0px' }}
             isValid={value => {
               if (value.length < 12) {
                 return;
@@ -121,9 +124,15 @@ export const ContactForm = ({ modalToggle, contactId }) => {
             onChange={e => setNumber(e)}
           />
         </Label>
-        <p>{errorMessage}</p>
+        {errorMessage && (
+          <ErrorMessage>
+            {<ErrorIcon />}
+            {errorMessage}
+          </ErrorMessage>
+        )}
 
         <Button
+          borderRadius={0}
           marginTop="60px"
           isDisabled={errorMessage}
           type="submit"
@@ -143,17 +152,3 @@ export const ContactForm = ({ modalToggle, contactId }) => {
 ContactForm.propTypes = {
   modalToggle: PropTypes.func.isRequired,
 };
-
-//  const onHandleFocus = e => {
-//    console.log(e.currentTarget.name);
-//    // console.log(e.target.value.replace(/[{(/ /)}]/g, '').slice(1));
-//    // console.log(typeof number);
-//    // console.log(typeof e.target.value.replace(/[{(/ /)}]/g, '').slice(1));
-//    if (
-//      e.target.value === name &&
-//      e.target.value.replace(/[{(/ /)}]/g, '').slice(1) === number
-//    ) {
-//      console.log('error');
-//      return;
-//    }
-//  };
