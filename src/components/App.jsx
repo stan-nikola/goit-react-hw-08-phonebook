@@ -3,21 +3,28 @@ import { Layout } from './Layout/Layout';
 import { Home } from 'pages/Home';
 import { Contacts } from 'pages/Contacts';
 import { LogIn } from 'pages/LogIn';
-import { Registration } from 'pages/Registration/Registration';
+import { Registration } from 'pages/Registration';
 import { refreshUser } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'components/hooks';
 import { useEffect } from 'react';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRout } from './PrivateRoute';
+import { logOut } from './../redux/auth/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isRememberUser } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isRememberUser) {
+      dispatch(logOut());
+    }
+  }, [dispatch, isRememberUser]);
 
   return isRefreshing ? (
     <div>Refreshing</div>
@@ -27,7 +34,7 @@ export const App = () => {
         <Route index path="/" element={<Home />} />
         <Route
           path="/contacts"
-          element={<PrivateRout component={Contacts} redirectTo="/login" />}
+          element={<PrivateRout component={Contacts} redirectTo="/" />}
         />
         <Route
           path="/login"

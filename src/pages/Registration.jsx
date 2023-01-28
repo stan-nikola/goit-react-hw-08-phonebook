@@ -2,7 +2,7 @@ import { Formik, Field } from 'formik';
 import { mailFormat, registerSchema } from 'constants/schema';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { register } from '../redux/auth/operations';
 import { useState } from 'react';
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   FormLabel,
   Input,
   VStack,
+  Checkbox,
   InputRightElement,
   InputGroup,
 } from '@chakra-ui/react';
@@ -18,17 +19,28 @@ import {
   ErrorIcon,
   ErrorMessage,
   RegistrationTitle,
-} from './Registration.styled';
+} from './PageStyles/UserAuthForm.styled';
+import { rememberUser } from 'redux/auth/authSlice';
 
 export const Registration = () => {
-  const [show, setShow] = useState(false);
-  const initialValues = { name: '', email: '', password: '' };
+  const [showPassword, setShowPassword] = useState(false);
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    rememberMe: 'true',
+  };
   const dispatch = useDispatch();
   const [registerLoad, setRegisterLoad] = useState(false);
+  const [passwordValue, setPasswordValue] = useState(0);
 
-  const handleSubmit = (e, { resetForm }) => {
+  const handleSubmit = (
+    { name, email, password, rememberMe: isRememberMe },
+    { resetForm }
+  ) => {
     setRegisterLoad(true);
-    dispatch(register(e));
+    dispatch(register({ name, email, password }));
+    dispatch(rememberUser(isRememberMe));
     resetForm();
   };
 
@@ -114,12 +126,13 @@ export const Registration = () => {
                         id="password"
                         name="password"
                         variant="filled"
-                        type={show ? 'text' : 'password'}
+                        type={showPassword ? 'text' : 'password'}
                         borderRadius="none"
                         pl={2}
                         pr={5}
                         w="248px"
                         validate={value => {
+                          setPasswordValue(value);
                           let error;
 
                           if (value.length < 7) {
@@ -133,19 +146,29 @@ export const Registration = () => {
                         <Button
                           size="sm"
                           borderRadius={50}
-                          onClick={() => setShow(!show)}
+                          isDisabled={passwordValue < 1}
+                          onClick={() => setShowPassword(!showPassword)}
                         >
-                          {show ? <BsEyeSlash /> : <BsEye />}
+                          {showPassword ? <BsEyeSlash /> : <BsEye />}
                         </Button>
                       </InputRightElement>
                     </InputGroup>
-
                     <ErrorMessage>
                       {<ErrorIcon />}
                       {errors.password}
                     </ErrorMessage>
                   </FormControl>
                 </InputGroup>
+                <Field
+                  as={Checkbox}
+                  id="rememberMe"
+                  name="rememberMe"
+                  colorScheme="purple"
+                  defaultChecked={true}
+                >
+                  Remember me?
+                </Field>
+
                 <Button
                   isDisabled={registerLoad}
                   isLoading={registerLoad}

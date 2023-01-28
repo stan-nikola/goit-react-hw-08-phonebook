@@ -15,11 +15,12 @@ export const AppBar = () => {
       display="flex"
       justifyContent="space-between"
       bg="primary"
+      alignItems="center"
     >
       <div>
         <Navigation />
       </div>
-      <div>{isLoggedIn ? <UserProfileMenu /> : <AuthNav />}</div>
+      {isLoggedIn ? <UserProfileMenu /> : <AuthNav />}
     </Box>
   );
 };

@@ -9,6 +9,7 @@ const {
   AccordionPanel,
   AccordionIcon,
   Spinner,
+  Checkbox,
 } = chakraTheme.components;
 
 export const theme = extendBaseTheme({
@@ -21,17 +22,21 @@ export const theme = extendBaseTheme({
     AccordionPanel,
     AccordionIcon,
     Spinner,
+    Checkbox,
   },
 
   colors: {
     primary: '#2470A0',
-    secondary: '#ebcda2',
-    third: '#ebcda27a',
-    accent: '#FAD3CF',
+    accent: '#000b09',
+
+    linkActive: '#ffffff',
     secondaryBg: '#d2dfff',
     thirdBg: '#b5c1dd',
     errorBg: '#d79f9f',
     error: '#FAF0F0',
+    button: '#319795',
+    buttonActive: '#285E61',
+    lightColor: '#ffffff',
   },
   space: [
     '0px',
@@ -63,6 +68,9 @@ export const theme = extendBaseTheme({
     normal: '3px solid',
   },
   radii: { none: '0', normal: '4px', round: '50%' },
+  textShadows: {
+    nav: '7px 3px 17px rgba(255, 255, 255, 0.5)',
+  },
   shadows: {
     main: ' rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;',
     items:

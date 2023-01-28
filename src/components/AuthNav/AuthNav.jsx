@@ -1,10 +1,13 @@
-import { NavigationLink } from 'components/Navigation/Navigation.styled';
+import { BiLogIn } from 'react-icons/bi';
+import { AuthLink } from './AuthNav.styled';
+import { Box } from '@chakra-ui/react';
 
 export const AuthNav = () => {
   return (
-    <>
-      <NavigationLink to="/login">Login</NavigationLink>
-      <NavigationLink to="/registration">Registration</NavigationLink>
-    </>
+    <Box as="div">
+      <AuthLink to="/login">
+        <BiLogIn />
+      </AuthLink>
+    </Box>
   );
 };

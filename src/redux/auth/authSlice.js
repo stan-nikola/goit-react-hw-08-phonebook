@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'rememberUser'],
 };
 
 export const authSlice = createSlice({
@@ -14,8 +14,14 @@ export const authSlice = createSlice({
   initialState: {
     user: { name: null, email: null },
     token: null,
+    rememberUser: false,
     isLoggedIn: false,
     isRefreshing: false,
+  },
+  reducers: {
+    rememberUser(state, action) {
+      state.rememberUser = action.payload;
+    },
   },
 
   extraReducers: builder => {
@@ -66,3 +72,5 @@ export const authPresistedReducer = persistReducer(
   persistConfig,
   authSlice.reducer
 );
+
+export const { rememberUser } = authSlice.actions;
