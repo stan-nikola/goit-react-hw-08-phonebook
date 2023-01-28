@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { HomeLink, HomeSubTitle, HomeTitle } from './PageStyles/Home.styled';
 
-export const Home = () => {
+const Home = () => {
   return (
     <Box
       display="flex"
@@ -20,3 +20,5 @@ export const Home = () => {
     </Box>
   );
 };
+
+export default Home;

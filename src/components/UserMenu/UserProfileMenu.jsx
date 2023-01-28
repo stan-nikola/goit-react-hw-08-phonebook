@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { logOut } from './../../redux/auth/operations';
 import { useAuth } from 'components/hooks';
 import { Box } from '@chakra-ui/react';
-import { UserMenuText } from './UserProfileMenu.styled';
-import { Button } from '@chakra-ui/react';
+import { UserMenuButton, UserMenuText } from './UserProfileMenu.styled';
+
+import { BiLogOut } from 'react-icons/bi';
 
 export const UserProfileMenu = () => {
   const { user } = useAuth();
@@ -18,28 +19,25 @@ export const UserProfileMenu = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="flex-end"
-      align-items="center"
-    >
-      <UserMenuText>
-        Welcome,<span>{user.name}</span>
-      </UserMenuText>
-      <Button
+    <Box display="flex" alignItems="flex-end" align-items="center">
+      {logOutLoad ? (
+        <UserMenuText>
+          Bye <span>{user.name}</span>
+        </UserMenuText>
+      ) : (
+        <UserMenuText>
+          Welcome,<span>{user.name}</span>
+        </UserMenuText>
+      )}
+      <UserMenuButton
         type="submit"
         onClick={handleLogOut}
         isLoading={logOutLoad}
-        colorScheme="teal"
-        variant="solid"
-        loadingText="Bye:)"
-        spinnerPlacement="start"
-        width="100px"
-        borderRadius="none"
+        background="transparent"
+        // spinnerPlacement="start"
       >
-        LogOut
-      </Button>
+        <BiLogOut />
+      </UserMenuButton>
     </Box>
   );
 };

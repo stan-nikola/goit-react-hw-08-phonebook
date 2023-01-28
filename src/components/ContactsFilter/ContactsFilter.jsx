@@ -19,7 +19,7 @@ export const ContactsFilter = () => {
     dispatch(contactsFilter(e.currentTarget.value));
   };
   return (
-    <Accordion bg="secondaryBg" width="400px" defaultIndex={[0]} allowMultiple>
+    <Accordion bg="secondaryBg" width="400px" defaultIndex={[1]} allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton
@@ -36,7 +36,7 @@ export const ContactsFilter = () => {
               <FilterIcon width="24px" height="24px" />
               <FilterHeader>Contacts filter</FilterHeader>
             </Box>
-            <AccordionIcon />
+            <AccordionIcon width="35px" height="35px" />
           </AccordionButton>
         </h2>
         <AccordionPanel pb={2}>

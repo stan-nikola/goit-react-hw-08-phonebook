@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { FormErrorMessage } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export const RegistrationTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.l};
@@ -35,4 +36,9 @@ export const ErrorIcon = styled(FiAlertTriangle)`
   fill: yellow;
   border: none;
   color: ${p => p.theme.colors.secondaryBorder};
+`;
+
+export const RegisterLogInLink = styled(Link)`
+  margin-left: ${p => p.theme.space[2]};
+  color: #0f05b6;
 `;

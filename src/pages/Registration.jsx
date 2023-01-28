@@ -22,7 +22,7 @@ import {
 } from './PageStyles/UserAuthForm.styled';
 import { rememberUser } from 'redux/auth/authSlice';
 
-export const Registration = () => {
+const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const initialValues = {
     name: '',
@@ -129,7 +129,7 @@ export const Registration = () => {
                         type={showPassword ? 'text' : 'password'}
                         borderRadius="none"
                         pl={2}
-                        pr={5}
+                        pr="40px"
                         w="248px"
                         validate={value => {
                           setPasswordValue(value);
@@ -142,9 +142,11 @@ export const Registration = () => {
                           return error;
                         }}
                       />
-                      <InputRightElement width="4.5rem">
+                      <InputRightElement w={10}>
                         <Button
                           size="sm"
+                          w={5}
+                          p={0}
                           borderRadius={50}
                           isDisabled={passwordValue < 1}
                           onClick={() => setShowPassword(!showPassword)}
@@ -188,3 +190,5 @@ export const Registration = () => {
     </Box>
   );
 };
+
+export default Registration;

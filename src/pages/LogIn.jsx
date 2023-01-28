@@ -20,10 +20,11 @@ import {
   RegistrationTitle,
   ErrorIcon,
   ErrorMessage,
+  RegisterLogInLink,
 } from './PageStyles/UserAuthForm.styled';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 
-export const LogIn = () => {
+const LogIn = () => {
   const initialValues = { email: '', password: '', rememberMe: true };
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -97,7 +98,7 @@ export const LogIn = () => {
                         type={showPassword ? 'text' : 'password'}
                         borderRadius="none"
                         pl={2}
-                        pr={5}
+                        pr="40px"
                         w="248px"
                         validate={value => {
                           setPasswordValue(value);
@@ -110,8 +111,10 @@ export const LogIn = () => {
                           return error;
                         }}
                       />
-                      <InputRightElement width="4.5rem">
+                      <InputRightElement w={10}>
                         <Button
+                          w={5}
+                          p={0}
                           size="sm"
                           borderRadius={50}
                           isDisabled={passwordValue < 1}
@@ -153,6 +156,12 @@ export const LogIn = () => {
           )}
         </Formik>
       </Box>
+      <Box as="p" mt={3}>
+        or
+        <RegisterLogInLink to="/registration">Register</RegisterLogInLink>
+      </Box>
     </Box>
   );
 };
+
+export default LogIn;

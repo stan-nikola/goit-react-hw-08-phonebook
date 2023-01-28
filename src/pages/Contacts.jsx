@@ -9,7 +9,7 @@ import { Box } from '@chakra-ui/react';
 import { ContactsCount } from './../components/ContactsCount/ContactsCount';
 import { AddContactButton } from './../components/AddContactButton/AddContactButton';
 
-export const Contacts = () => {
+const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [contactId, setContactId] = useState(null);
 
@@ -45,3 +45,5 @@ export const Contacts = () => {
     </Box>
   );
 };
+
+export default Contacts;
