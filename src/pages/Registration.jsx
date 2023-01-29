@@ -3,7 +3,8 @@ import { mailFormat, registerSchema } from 'constants/schema';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/auth/operations';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from 'components/hooks';
 import {
   Box,
   Button,
@@ -20,7 +21,9 @@ import {
   ErrorMessage,
   RegistrationTitle,
 } from './PageStyles/UserAuthForm.styled';
-import { rememberUser } from 'redux/auth/authSlice';
+import { rememberUser, authError } from 'redux/auth/authSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import { toastOptionsMain } from 'settings/toastOptions';
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,15 +36,25 @@ const Registration = () => {
   const dispatch = useDispatch();
   const [registerLoad, setRegisterLoad] = useState(false);
   const [passwordValue, setPasswordValue] = useState(0);
+  const { isAuthError } = useAuth();
 
-  const handleSubmit = (
-    { name, email, password, rememberMe: isRememberMe },
-    { resetForm }
-  ) => {
+  useEffect(() => {
+    if (isAuthError !== null) {
+      toast.error(`Ups...${isAuthError}`, toastOptionsMain);
+      dispatch(authError(null));
+      setRegisterLoad(false);
+    }
+  }, [dispatch, isAuthError]);
+
+  const handleSubmit = ({
+    name,
+    email,
+    password,
+    rememberMe: isRememberMe,
+  }) => {
     setRegisterLoad(true);
     dispatch(register({ name, email, password }));
     dispatch(rememberUser(isRememberMe));
-    resetForm();
   };
 
   return (
@@ -187,6 +200,7 @@ const Registration = () => {
           )}
         </Formik>
       </Box>
+      <ToastContainer />
     </Box>
   );
 };

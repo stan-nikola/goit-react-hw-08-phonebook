@@ -14,6 +14,7 @@ export const authSlice = createSlice({
   initialState: {
     user: { name: null, email: null },
     token: null,
+    authError: null,
     rememberUser: false,
     isLoggedIn: false,
     isRefreshing: false,
@@ -22,27 +23,39 @@ export const authSlice = createSlice({
     rememberUser(state, action) {
       state.rememberUser = action.payload;
     },
+    authError(state, action) {
+      state.authError = action.payload;
+    },
   },
 
   extraReducers: builder => {
     builder
-      .addCase(register.pending, (state, action) => {})
+      .addCase(register.pending, (state, action) => {
+        state.authError = null;
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(register.rejected, (state, action) => {})
+      .addCase(register.rejected, (state, action) => {
+        console.log(action.payload);
+        state.authError = action.payload;
+      })
       // register
 
       //logIn
-      .addCase(logIn.pending, (state, action) => {})
+      .addCase(logIn.pending, (state, action) => {
+        state.authError = null;
+      })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.rejected, (state, action) => {})
+      .addCase(logIn.rejected, (state, action) => {
+        state.authError = action.payload;
+      })
       //logIn
 
       // logOut
@@ -51,7 +64,9 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(logOut.rejected, (state, action) => {})
+      .addCase(logOut.rejected, (state, action) => {
+        state.authError = action.payload;
+      })
 
       // refreshUser
       .addCase(refreshUser.pending, state => {
@@ -62,7 +77,7 @@ export const authSlice = createSlice({
         state.user = action.payload;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
       });
   },
@@ -73,4 +88,4 @@ export const authPresistedReducer = persistReducer(
   authSlice.reducer
 );
 
-export const { rememberUser } = authSlice.actions;
+export const { rememberUser, authError } = authSlice.actions;

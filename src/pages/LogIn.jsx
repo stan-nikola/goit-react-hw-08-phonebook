@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik, Field } from 'formik';
 import { logInSchema, mailFormat } from 'constants/schema';
 
 import { useDispatch } from 'react-redux';
 import { logIn } from './../redux/auth/operations';
-import { rememberUser } from 'redux/auth/authSlice';
+import { authError, rememberUser } from 'redux/auth/authSlice';
+import { useAuth } from 'components/hooks';
 import {
   Box,
   FormControl,
@@ -23,6 +24,8 @@ import {
   RegisterLogInLink,
 } from './PageStyles/UserAuthForm.styled';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { ToastContainer, toast } from 'react-toastify';
+import { toastOptionsMain } from 'settings/toastOptions';
 
 const LogIn = () => {
   const initialValues = { email: '', password: '', rememberMe: true };
@@ -30,15 +33,21 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [registerLoad, setRegisterLoad] = useState(false);
   const [passwordValue, setPasswordValue] = useState(0);
+  const { isAuthError } = useAuth();
 
-  const handleSubmit = (
-    { email, password, rememberMe: isRememberMe },
-    { resetForm }
-  ) => {
-    dispatch(logIn({ email, password }));
+  useEffect(() => {
+    if (isAuthError !== null) {
+      toast.error(`Ups...${isAuthError}`, toastOptionsMain);
+      dispatch(authError(null));
+      setRegisterLoad(false);
+    }
+  }, [dispatch, isAuthError]);
+
+  const handleSubmit = ({ email, password, rememberMe: isRememberMe }) => {
     setRegisterLoad(true);
+
     dispatch(rememberUser(isRememberMe));
-    resetForm();
+    dispatch(logIn({ email, password }));
   };
 
   return (
@@ -70,7 +79,6 @@ const LogIn = () => {
                         let error;
 
                         if (value < 1) {
-                          console.log('111111');
                           error = errors.email;
                         }
 
@@ -160,6 +168,7 @@ const LogIn = () => {
         or
         <RegisterLogInLink to="/registration">Register</RegisterLogInLink>
       </Box>
+      <ToastContainer />
     </Box>
   );
 };
