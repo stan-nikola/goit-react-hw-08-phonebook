@@ -5,10 +5,10 @@ export const AddContactButton = ({ modalToggle }) => {
   return (
     <Button
       display="flex"
-      justifyContent="flex-start"
+      justifyContent="center"
       textAlign="center"
       borderRadius="none"
-      mt={1}
+      w="100%"
       height={14}
       type="button"
       onClick={modalToggle}

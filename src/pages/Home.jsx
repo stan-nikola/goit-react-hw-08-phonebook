@@ -14,9 +14,9 @@ const Home = () => {
     >
       <HomeTitle>Hello</HomeTitle>
       <HomeSubTitle>to use this application</HomeSubTitle>
-      <HomeLink to="/login">Login</HomeLink>
+      <HomeLink to="/login">Log In</HomeLink>
       <HomeSubTitle>or</HomeSubTitle>
-      <HomeLink to="/registration">Register</HomeLink>
+      <HomeLink to="/registration">Sign In</HomeLink>
     </Box>
   );
 };

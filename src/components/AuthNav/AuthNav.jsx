@@ -6,7 +6,7 @@ export const AuthNav = () => {
   return (
     <Box as="div">
       <AuthLink to="/login">
-        <BiLogIn />
+        <span>Log In</span> <BiLogIn />
       </AuthLink>
     </Box>
   );

@@ -28,7 +28,7 @@ export const theme = extendBaseTheme({
   colors: {
     primary: '#2470A0',
     accent: '#000b09',
-
+    contactBg: '#7c99de',
     linkActive: '#ffffff',
     secondaryBg: '#d2dfff',
     thirdBg: '#b5c1dd',
@@ -44,6 +44,7 @@ export const theme = extendBaseTheme({
     '8px',
     '16px',
     '32px',
+    '56px',
     '64px',
     '128px',
     '256px',

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Formik, Field } from 'formik';
 import { logInSchema, mailFormat } from 'constants/schema';
-
+import { FiAlertTriangle } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { logIn } from './../redux/auth/operations';
 import { authError, rememberUser } from 'redux/auth/authSlice';
@@ -19,7 +19,6 @@ import {
 } from '@chakra-ui/react';
 import {
   RegistrationTitle,
-  ErrorIcon,
   ErrorMessage,
   RegisterLogInLink,
 } from './PageStyles/UserAuthForm.styled';
@@ -51,7 +50,7 @@ const LogIn = () => {
   };
 
   return (
-    <Box pt={4} w="100vw" h="90vh" bg="thirdBg" textAlign="center">
+    <Box pt={4} w="100vw" h="100vh" bg="thirdBg" textAlign="center">
       <RegistrationTitle>Log In</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
@@ -61,7 +60,7 @@ const LogIn = () => {
         >
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
-              <VStack spacing={4} display="flex" align="flex-start">
+              <VStack spacing={3} display="flex" align="flex-start">
                 <InputGroup>
                   <FormControl isInvalid={!!errors.email && touched.email}>
                     <FormLabel htmlFor="email">E-mail</FormLabel>
@@ -86,7 +85,7 @@ const LogIn = () => {
                       }}
                     />
                     <ErrorMessage>
-                      {<ErrorIcon />}
+                      {<FiAlertTriangle />}
                       {errors.email}
                     </ErrorMessage>
                   </FormControl>
@@ -134,7 +133,7 @@ const LogIn = () => {
                     </InputGroup>
 
                     <ErrorMessage>
-                      {<ErrorIcon />}
+                      {<FiAlertTriangle />}
                       {errors.password}
                     </ErrorMessage>
                   </FormControl>
@@ -143,7 +142,7 @@ const LogIn = () => {
                   as={Checkbox}
                   id="rememberMe"
                   name="rememberMe"
-                  colorScheme="purple"
+                  colorScheme="teal"
                   defaultChecked={true}
                 >
                   Remember me?

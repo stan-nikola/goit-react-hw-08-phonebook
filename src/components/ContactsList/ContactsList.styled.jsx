@@ -1,24 +1,38 @@
 import styled from '@emotion/styled';
 import { BsFillPencilFill, BsFillXCircleFill } from 'react-icons/bs';
 
+export const ContactListContainer = styled.div`
+  height: 60px;
+  @media screen and (min-width: 1024px) {
+    margin-left: ${p => p.theme.space[5]};
+    margin-top: ${p => p.theme.space[1]};
+  }
+`;
 export const ContactList = styled.li`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 40px;
-  min-width: 450px;
+  justify-content: center;
+  height: 60px;
+  min-width: 100%;
   text-align: center;
-
   padding: ${p => p.theme.space[2]};
   background-color: ${p => p.theme.colors.secondaryBg};
+
   p {
     font-weight: ${p => p.theme.fontWeights.bold};
     text-transform: capitalize;
-    font-size: ${p => p.theme.fontSizes.m};
+    font-size: ${p => p.theme.fontSizes.s};
     min-width: 40%;
   }
   &:nth-of-type(2n + 1) {
-    background-color: ${p => p.theme.colors.thirdBg};
+    background-color: ${p => p.theme.colors.contactBg};
+  }
+  @media screen and (min-width: 768px) {
+    min-width: 375px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-width: 450px;
   }
 `;
 
@@ -54,9 +68,3 @@ export const ContactBtn = styled.button`
   padding: ${p => p.theme.space[2]};
   cursor: pointer;
 `;
-
-// export const ContactName = styled.span`
-//   margin-right: ${p => p.theme.space[2]}px;
-//   font-size: ${p => p.theme.fontSizes.m};
-//   font-weight: ${p => p.theme.fontWeights.bold};
-// `;

@@ -17,13 +17,13 @@ import {
   InputGroup,
 } from '@chakra-ui/react';
 import {
-  ErrorIcon,
   ErrorMessage,
   RegistrationTitle,
 } from './PageStyles/UserAuthForm.styled';
 import { rememberUser, authError } from 'redux/auth/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { toastOptionsMain } from 'settings/toastOptions';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +58,7 @@ const Registration = () => {
   };
 
   return (
-    <Box pt={4} w="100vw" h="90vh" bg="thirdBg" textAlign="center">
+    <Box pt={4} w="100vw" h="100vh" bg="thirdBg" textAlign="center">
       <RegistrationTitle>User registration</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
@@ -68,7 +68,7 @@ const Registration = () => {
         >
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
-              <VStack spacing={4} display="flex" align="flex-start">
+              <VStack spacing={3} display="flex" align="flex-start">
                 <InputGroup>
                   <FormControl isInvalid={!!errors.name && touched.name}>
                     <FormLabel htmlFor="name">Name</FormLabel>
@@ -93,7 +93,7 @@ const Registration = () => {
                       }}
                     />
                     <ErrorMessage>
-                      {<ErrorIcon />}
+                      {<FiAlertTriangle />}
                       {errors.name}
                     </ErrorMessage>
                   </FormControl>
@@ -122,7 +122,7 @@ const Registration = () => {
                       }}
                     />
                     <ErrorMessage>
-                      {<ErrorIcon />}
+                      {<FiAlertTriangle />}
                       {errors.email}
                     </ErrorMessage>
                   </FormControl>
@@ -169,7 +169,7 @@ const Registration = () => {
                       </InputRightElement>
                     </InputGroup>
                     <ErrorMessage>
-                      {<ErrorIcon />}
+                      {<FiAlertTriangle />}
                       {errors.password}
                     </ErrorMessage>
                   </FormControl>
@@ -178,7 +178,7 @@ const Registration = () => {
                   as={Checkbox}
                   id="rememberMe"
                   name="rememberMe"
-                  colorScheme="purple"
+                  colorScheme="teal"
                   defaultChecked={true}
                 >
                   Remember me?

@@ -19,14 +19,14 @@ export const UserProfileMenu = () => {
   };
 
   return (
-    <Box display="flex" alignItems="flex-end" align-items="center">
+    <Box display="flex" alignItems="center">
       {logOutLoad ? (
         <UserMenuText>
           Bye <span>{user.name}</span>
         </UserMenuText>
       ) : (
         <UserMenuText>
-          Welcome,<span>{user.name}</span>
+          <span>{user.name}</span>
         </UserMenuText>
       )}
       <UserMenuButton

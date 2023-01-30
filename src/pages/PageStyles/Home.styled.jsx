@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export const HomeTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.l};
   margin-bottom: ${p => p.theme.space[4]};
-  m
 `;
 export const HomeSubTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.m};

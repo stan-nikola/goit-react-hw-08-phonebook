@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useContacts } from 'components/hooks/useContacts';
 import { Box } from '@chakra-ui/react';
 import { ContactListItem } from './ContactsListItem';
+import { ContactListContainer } from './ContactsList.styled';
 
 export const ContactsList = ({ modalToggle }) => {
   const { contacts, filter } = useContacts();
@@ -13,7 +14,7 @@ export const ContactsList = ({ modalToggle }) => {
   );
 
   return (
-    <Box ml={5}>
+    <ContactListContainer>
       <Box as="ul" display="flex" flexWrap="wrap" gridGap={2}>
         {visibleContacts.map(contact => (
           <ContactListItem
@@ -23,6 +24,6 @@ export const ContactsList = ({ modalToggle }) => {
           />
         ))}
       </Box>
-    </Box>
+    </ContactListContainer>
   );
 };

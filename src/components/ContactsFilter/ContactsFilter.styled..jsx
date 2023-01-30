@@ -8,7 +8,7 @@ export const FilterHeader = styled.span`
 `;
 
 export const FilterIcon = styled(FcSearch)`
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   margin-right: 45px;
 `;

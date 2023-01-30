@@ -19,10 +19,17 @@ export const ContactsFilter = () => {
     dispatch(contactsFilter(e.currentTarget.value));
   };
   return (
-    <Accordion bg="secondaryBg" width="400px" defaultIndex={[1]} allowMultiple>
+    <Accordion
+      bg="secondaryBg"
+      min-width="320px"
+      mb={1}
+      defaultIndex={[1]}
+      allowMultiple
+    >
       <AccordionItem>
         <h2>
           <AccordionButton
+            justifyContent="center"
             height={14}
             _expanded={{ bg: '#2470A0', color: 'white' }}
           >
@@ -30,23 +37,21 @@ export const ContactsFilter = () => {
               as="span"
               display="flex"
               alignItems="center"
-              flex="1"
               textAlign="center"
             >
               <FilterIcon width="24px" height="24px" />
-              <FilterHeader>Contacts filter</FilterHeader>
+              <FilterHeader>Search </FilterHeader>
             </Box>
             <AccordionIcon width="35px" height="35px" />
           </AccordionButton>
         </h2>
-        <AccordionPanel pb={2}>
+        <AccordionPanel display="flex" justifyContent="center" pb={2}>
           {
             <Input
-              ml="20px"
               type="text"
               name="filter"
               onChange={handleChange}
-              width="300px"
+              width="350px"
               variant="filled"
               placeholder="Enter name to find"
               p={2}

@@ -5,9 +5,10 @@ import { ContactForm } from '../components/ContactForm/ContactForm';
 import { ContactsList } from './../components/ContactsList/ContactsList';
 import { fetchContacts } from 'redux/contacts/operations';
 import { ContactsFilter } from 'components/ContactsFilter/ContactsFilter';
-import { Box } from '@chakra-ui/react';
+
 import { ContactsCount } from './../components/ContactsCount/ContactsCount';
 import { AddContactButton } from './../components/AddContactButton/AddContactButton';
+import { ContactBar, ContactContainer } from './PageStyles/Contacts.styled';
 
 const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -29,12 +30,12 @@ const Contacts = () => {
   };
 
   return (
-    <Box p={4} display="flex">
-      <Box display="flex" flexDirection="column">
+    <ContactContainer>
+      <ContactBar>
         <ContactsCount />
         <ContactsFilter />
         <AddContactButton modalToggle={modalToggle} />
-      </Box>
+      </ContactBar>
 
       <ContactsList modalToggle={modalToggle} />
       {modalShow && (
@@ -42,7 +43,7 @@ const Contacts = () => {
           <ContactForm modalToggle={modalToggle} contactId={contactId} />
         </Modal>
       )}
-    </Box>
+    </ContactContainer>
   );
 };
 

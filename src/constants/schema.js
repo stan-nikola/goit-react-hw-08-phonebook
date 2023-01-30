@@ -5,12 +5,10 @@ export const registerSchema = yup.object({
     .string()
     .min(4, 'Name must be at least 4 letters long')
     .max(16, 'Name must be not longer than 16 letters')
-    .required(
-      "Please enter name. For example Adrian, Jacob Mercer, Charles de Batz, Castelmore d'Artagnan"
-    ),
+    .required('Please enter name. For example Mango, Polly, Repeta'),
   email: yup
     .string()
-    .email('Must be a valid email Example: my.mail@mail.com')
+    .email('Must be a valid email. Example: my.mail@mail.com')
     .required('Please enter e-mail '),
   password: yup
     .string()
