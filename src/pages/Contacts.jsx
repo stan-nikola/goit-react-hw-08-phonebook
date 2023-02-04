@@ -8,11 +8,17 @@ import { ContactsFilter } from 'components/ContactsFilter/ContactsFilter';
 
 import { ContactsCount } from './../components/ContactsCount/ContactsCount';
 import { AddContactButton } from './../components/AddContactButton/AddContactButton';
-import { ContactBar, ContactContainer } from './PageStyles/Contacts.styled';
+import {
+  ContactBar,
+  ContactContainer,
+  LoadingProgress,
+} from './PageStyles/Contacts.styled';
+import { useContacts } from 'components/hooks/useContacts';
 
 const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [contactId, setContactId] = useState(null);
+  const { contactOperationLoading } = useContacts();
 
   const dispatch = useDispatch();
 
@@ -37,6 +43,7 @@ const Contacts = () => {
         <AddContactButton modalToggle={modalToggle} />
       </ContactBar>
 
+      {contactOperationLoading && <LoadingProgress size="xs" isIndeterminate />}
       <ContactsList modalToggle={modalToggle} />
       {modalShow && (
         <Modal modalToggle={modalToggle}>

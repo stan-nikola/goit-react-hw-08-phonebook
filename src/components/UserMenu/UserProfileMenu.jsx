@@ -34,7 +34,6 @@ export const UserProfileMenu = () => {
         onClick={handleLogOut}
         isLoading={logOutLoad}
         background="transparent"
-        // spinnerPlacement="start"
       >
         <BiLogOut />
       </UserMenuButton>

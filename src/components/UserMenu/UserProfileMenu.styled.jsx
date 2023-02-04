@@ -29,7 +29,7 @@ export const UserMenuButton = styled(Button)`
 
   &:hover,
   &:focus {
-    background: transparent;
+    background: transparent !important;
     svg {
       color: ${p => p.theme.colors.button};
     }

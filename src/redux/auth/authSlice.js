@@ -2,12 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { register, logOut, logIn, refreshUser } from './operations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-const persistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['token', 'rememberUser'],
-};
+// import createTransform from 'redux-persist/lib/createTransform';
+// import pick from 'lodash.pick';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -15,7 +11,7 @@ export const authSlice = createSlice({
     user: { name: null, email: null },
     token: null,
     authError: null,
-    rememberUser: false,
+    rememberUser: true,
     isLoggedIn: false,
     isRefreshing: false,
   },
@@ -39,7 +35,6 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
-        console.log(action.payload);
         state.authError = action.payload;
       })
       // register
@@ -63,6 +58,7 @@ export const authSlice = createSlice({
       .addCase(logOut.fulfilled, (state, action) => {
         state.token = null;
         state.isLoggedIn = false;
+        state.rememberUser = true;
       })
       .addCase(logOut.rejected, (state, action) => {
         state.authError = action.payload;
@@ -82,6 +78,26 @@ export const authSlice = createSlice({
       });
   },
 });
+
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'rememberUser'],
+};
+
+// const whitelistTransform = createTransform((inboundState, key) => {
+//   // Select values from the route reducer
+//   if ((key === 'rememberUser' || key === 'token') && inboundState) {
+//     console.log('4444');
+//     return pick(inboundState, ['token']);
+//   }
+// });
+
+// const persistConfig = {
+//   key: 'auth',
+//   storage,
+//   transforms: [whitelistTransform],
+// };
 
 export const authPresistedReducer = persistReducer(
   persistConfig,

@@ -1,3 +1,4 @@
+import { Progress } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
 export const ContactContainer = styled.div`
@@ -17,4 +18,11 @@ export const ContactBar = styled.div`
   @media screen and (min-width: 1024px) {
     min-width: 400px;
   }
+`;
+
+export const LoadingProgress = styled(Progress)`
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
 `;

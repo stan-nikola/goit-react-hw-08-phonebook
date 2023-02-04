@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
 import { BsFillPencilFill, BsFillXCircleFill } from 'react-icons/bs';
 
-export const ContactListContainer = styled.div`
+export const ContactListContainer = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: ${p => p.theme.space[2]};
   height: 60px;
   @media screen and (min-width: 1024px) {
-    margin-left: ${p => p.theme.space[5]};
-    margin-top: ${p => p.theme.space[1]};
+    margin-left: ${p => p.theme.space[3]};
+    margin-top: ${p => p.theme.space[0]};
   }
 `;
 export const ContactList = styled.li`
@@ -24,9 +29,13 @@ export const ContactList = styled.li`
     font-size: ${p => p.theme.fontSizes.s};
     min-width: 40%;
   }
-  &:nth-of-type(2n + 1) {
-    background-color: ${p => p.theme.colors.contactBg};
+
+  @media screen and (max-width: 767px) {
+    &:nth-of-type(2n + 1) {
+      background-color: ${p => p.theme.colors.contactBg};
+    }
   }
+
   @media screen and (min-width: 768px) {
     min-width: 375px;
   }

@@ -15,9 +15,13 @@ export const ModalWindow = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  min-height: 430px;
-  min-width: 400px;
+  height: 480px;
+  width: 300px;
   padding: ${p => p.theme.space[3]};
   background-color: ${p => p.theme.colors.secondaryBg};
   box-shadow: ${p => p.theme.shadows.items};
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    height: 450px;
+  }
 `;

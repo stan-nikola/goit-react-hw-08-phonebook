@@ -15,12 +15,12 @@ import {
   Label,
   LabelName,
   ModalTitle,
+  PhoneInputStyled,
 } from './ContactForm.styled';
 import { FiX } from 'react-icons/fi';
 import { MdOutlineContactPhone } from 'react-icons/md';
 import { Box } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
-import PhoneInput from 'react-phone-input-2';
 
 export const ContactForm = ({ modalToggle, contactId }) => {
   const [name, setName] = useState('');
@@ -109,8 +109,7 @@ export const ContactForm = ({ modalToggle, contactId }) => {
         </Label>
         <Label>
           <LabelName>Number</LabelName>
-          <PhoneInput
-            inputStyle={{ borderRadius: '0px' }}
+          <PhoneInputStyled
             isValid={value => {
               if (value.length < 12) {
                 return;

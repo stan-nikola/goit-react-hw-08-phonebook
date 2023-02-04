@@ -12,13 +12,14 @@ import {
   FormLabel,
   Input,
   VStack,
-  Checkbox,
   InputRightElement,
   InputGroup,
+  Checkbox,
 } from '@chakra-ui/react';
 import {
   ErrorMessage,
   RegistrationTitle,
+  RememberMeText,
 } from './PageStyles/UserAuthForm.styled';
 import { rememberUser, authError } from 'redux/auth/authSlice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -59,7 +60,7 @@ const Registration = () => {
 
   return (
     <Box pt={4} w="100vw" h="100vh" bg="thirdBg" textAlign="center">
-      <RegistrationTitle>User registration</RegistrationTitle>
+      <RegistrationTitle>Sign In</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
           initialValues={initialValues}
@@ -156,16 +157,17 @@ const Registration = () => {
                         }}
                       />
                       <InputRightElement w={10}>
-                        <Button
-                          size="sm"
-                          w={5}
-                          p={0}
-                          borderRadius={50}
-                          isDisabled={passwordValue < 1}
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? <BsEyeSlash /> : <BsEye />}
-                        </Button>
+                        {passwordValue.length > 0 && (
+                          <Button
+                            size="sm"
+                            w={5}
+                            p={0}
+                            borderRadius={50}
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? <BsEyeSlash /> : <BsEye />}
+                          </Button>
+                        )}
                       </InputRightElement>
                     </InputGroup>
                     <ErrorMessage>
@@ -174,15 +176,17 @@ const Registration = () => {
                     </ErrorMessage>
                   </FormControl>
                 </InputGroup>
-                <Field
-                  as={Checkbox}
-                  id="rememberMe"
-                  name="rememberMe"
-                  colorScheme="teal"
-                  defaultChecked={true}
-                >
-                  Remember me?
-                </Field>
+
+                <Box as="label" display="flex">
+                  <Field
+                    as={Checkbox}
+                    id="rememberMe"
+                    name="rememberMe"
+                    colorScheme="teal"
+                    defaultChecked={true}
+                  />
+                  <RememberMeText>Remember me?</RememberMeText>
+                </Box>
 
                 <Button
                   isDisabled={registerLoad}
@@ -193,7 +197,7 @@ const Registration = () => {
                   colorScheme="teal"
                   width="248px"
                 >
-                  Register
+                  Sign In
                 </Button>
               </VStack>
             </form>

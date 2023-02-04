@@ -21,13 +21,14 @@ import {
   RegistrationTitle,
   ErrorMessage,
   RegisterLogInLink,
+  RememberMeText,
 } from './PageStyles/UserAuthForm.styled';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { ToastContainer, toast } from 'react-toastify';
 import { toastOptionsMain } from 'settings/toastOptions';
 
 const LogIn = () => {
-  const initialValues = { email: '', password: '', rememberMe: true };
+  const initialValues = { email: '', password: '', rememberMe: 'true' };
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [registerLoad, setRegisterLoad] = useState(false);
@@ -44,7 +45,6 @@ const LogIn = () => {
 
   const handleSubmit = ({ email, password, rememberMe: isRememberMe }) => {
     setRegisterLoad(true);
-
     dispatch(rememberUser(isRememberMe));
     dispatch(logIn({ email, password }));
   };
@@ -119,16 +119,17 @@ const LogIn = () => {
                         }}
                       />
                       <InputRightElement w={10}>
-                        <Button
-                          w={5}
-                          p={0}
-                          size="sm"
-                          borderRadius={50}
-                          isDisabled={passwordValue < 1}
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? <BsEyeSlash /> : <BsEye />}
-                        </Button>
+                        {passwordValue.length > 0 && (
+                          <Button
+                            size="sm"
+                            w={5}
+                            p={0}
+                            borderRadius={50}
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? <BsEyeSlash /> : <BsEye />}
+                          </Button>
+                        )}
                       </InputRightElement>
                     </InputGroup>
 
@@ -138,15 +139,17 @@ const LogIn = () => {
                     </ErrorMessage>
                   </FormControl>
                 </InputGroup>
-                <Field
-                  as={Checkbox}
-                  id="rememberMe"
-                  name="rememberMe"
-                  colorScheme="teal"
-                  defaultChecked={true}
-                >
-                  Remember me?
-                </Field>
+                <Box as="label" display="flex">
+                  <Field
+                    as={Checkbox}
+                    id="rememberMe"
+                    name="rememberMe"
+                    colorScheme="teal"
+                    defaultChecked={true}
+                  />
+                  <RememberMeText>Remember me?</RememberMeText>
+                </Box>
+
                 <Button
                   isDisabled={registerLoad}
                   isLoading={registerLoad}
@@ -165,7 +168,7 @@ const LogIn = () => {
       </Box>
       <Box as="p" mt={3}>
         or
-        <RegisterLogInLink to="/registration">Register</RegisterLogInLink>
+        <RegisterLogInLink to="/registration">Sign In</RegisterLogInLink>
       </Box>
       <ToastContainer />
     </Box>

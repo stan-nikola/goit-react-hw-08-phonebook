@@ -1,4 +1,4 @@
-import { extendBaseTheme } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 import chakraTheme from '@chakra-ui/theme';
 const {
   Button,
@@ -10,9 +10,10 @@ const {
   AccordionIcon,
   Spinner,
   Checkbox,
+  Progress,
 } = chakraTheme.components;
 
-export const theme = extendBaseTheme({
+export const theme = extendTheme({
   components: {
     Button,
     Input,
@@ -23,6 +24,7 @@ export const theme = extendBaseTheme({
     AccordionIcon,
     Spinner,
     Checkbox,
+    Progress,
   },
 
   colors: {
@@ -33,6 +35,7 @@ export const theme = extendBaseTheme({
     secondaryBg: '#d2dfff',
     thirdBg: '#b5c1dd',
     errorBg: '#d79f9f',
+    warningIcon: '#fc5757',
     error: '#FAF0F0',
     button: '#319795',
     buttonActive: '#285E61',

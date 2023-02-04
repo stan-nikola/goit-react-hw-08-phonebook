@@ -21,6 +21,7 @@ export const ErrorMessage = styled(FormErrorMessage)`
   border-radius: ${p => p.theme.radii.normal};
   margin-top: ${p => p.theme.space[3]};
   margin-left: 25px;
+  color: inherit;
 
   svg {
     position: absolute;
@@ -31,11 +32,14 @@ export const ErrorMessage = styled(FormErrorMessage)`
     height: 20px;
     fill: yellow;
     border: none;
-    color: ${p => p.theme.colors.secondaryBorder};
+    color: ${p => p.theme.colors.warningIcon};
   }
 `;
 
 export const RegisterLogInLink = styled(Link)`
   margin-left: ${p => p.theme.space[2]};
   color: #0f05b6;
+`;
+export const RememberMeText = styled.span`
+  margin-left: ${p => p.theme.space[2]};
 `;

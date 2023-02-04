@@ -7,6 +7,7 @@ import { useAuth } from 'components/hooks';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRout } from './PrivateRoute';
 import { refreshUser, logOut } from 'redux/auth/operations';
+import { Progress } from '@chakra-ui/react';
 
 const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
@@ -19,17 +20,20 @@ export const App = () => {
   const { isRefreshing, isRememberUser } = useAuth();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (!isRememberUser && isRefreshing) {
+      dispatch(logOut());
+      return;
+    }
+  }, [dispatch, isRefreshing, isRememberUser]);
 
   useEffect(() => {
-    if (!isRememberUser) {
-      dispatch(logOut());
+    if (isRememberUser) {
+      dispatch(refreshUser());
     }
   }, [dispatch, isRememberUser]);
 
   return isRefreshing ? (
-    <div>Refreshing</div>
+    <Progress size="xs" isIndeterminate />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

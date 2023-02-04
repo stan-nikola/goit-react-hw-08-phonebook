@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { FiAlertTriangle } from 'react-icons/fi';
+import PhoneInput from 'react-phone-input-2';
 
 export const CloseModalBtn = styled.button`
   position: absolute;
@@ -60,24 +61,38 @@ function nameInputBgColorChange({ value }) {
 
 export const InputName = styled.input`
   height: 35px;
-  width: 300px;
-  border-radius: 5px;
+  width: 260px;
+
   padding: 2px 10px;
   outline: none;
   transition: border-color 250ms linear, background-color 250ms linear;
   border: 1px solid;
-  border-radius: 0;
+  border-radius: ${p => p.theme.radii.none};
 
   border-color: ${nameInputBorderColorChange};
   background-color: ${nameInputBgColorChange};
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
 `;
+
+export const PhoneInputStyled = styled(PhoneInput)`
+  .form-control {
+    border-radius: ${p => p.theme.radii.none} !important;
+    width: 260px !important;
+    @media screen and (min-width: 768px) {
+      width: 300px !important;
+    }
+  }
+`;
+
 export const ErrorMessage = styled.p`
   position: absolute;
-  bottom: 100px;
+  bottom: 130px;
   right: 50%;
   transform: translateX(50%);
   z-index: 10;
-  width: 282px;
+  width: 250px;
   font-style: italic;
   font-size: ${p => p.theme.fontSizes.s};
   text-align: center;
@@ -86,6 +101,9 @@ export const ErrorMessage = styled.p`
   padding: ${p => p.theme.space[1]};
   background-color: ${p => p.theme.colors.error};
   border-radius: ${p => p.theme.radii.normal};
+  @media screen and (min-width: 768px) {
+    width: 300px;
+  }
 `;
 
 export const ErrorIcon = styled(FiAlertTriangle)`
