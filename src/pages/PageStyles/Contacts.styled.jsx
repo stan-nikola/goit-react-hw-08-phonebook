@@ -11,6 +11,8 @@ export const ContactContainer = styled.div`
 
   @media screen and (min-width: 1024px) {
     display: flex;
+    padding-left: ${p => p.theme.space[3]};
+    padding-right: ${p => p.theme.space[3]};
   }
 `;
 
