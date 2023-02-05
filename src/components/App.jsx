@@ -4,17 +4,18 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'components/hooks';
 
-import { RestrictedRoute } from './RestrictedRoute';
-import { PrivateRout } from './PrivateRoute';
+import { RestrictedRoute } from './routes/RestrictedRoute';
+import { PrivateRoute } from './routes/PrivateRoute';
 import { refreshUser, logOut } from 'redux/auth/operations';
 import { Progress } from '@chakra-ui/react';
 import { contactsItems } from 'redux/contacts/contactsSlice';
+import NotFound from 'pages/NotFound/NotFound';
 
 const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
 const LogIn = lazy(() => import('pages/LogIn'));
 const Registration = lazy(() => import('pages/Registration'));
-const NotFound = lazy(() => import('pages/NotFound/NotFound'));
+// const NotFound = lazy(() => import('pages/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -44,9 +45,10 @@ export const App = () => {
           path="/"
           element={<RestrictedRoute component={Home} redirectTo="/contacts" />}
         />
+        {/* <Route index path="/" element={<Home />} /> */}
         <Route
           path="/contacts"
-          element={<PrivateRout component={Contacts} redirectTo="/" />}
+          element={<PrivateRoute component={Contacts} redirectTo="/" />}
         />
         <Route
           path="/login"

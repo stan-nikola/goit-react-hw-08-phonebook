@@ -12,11 +12,8 @@ export const AddContactButton = ({ modalToggle }) => {
       height={14}
       type="button"
       onClick={modalToggle}
-      isLoading={false}
-      loadingText="Loading"
       colorScheme="teal"
       variant="solid"
-      spinnerPlacement="start"
       fontSize={24}
     >
       <AddContactIcon />

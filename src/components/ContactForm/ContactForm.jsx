@@ -40,6 +40,7 @@ export const ContactForm = ({ modalToggle, contactId }) => {
       setNumber(finnedContactById.number);
     }
   }, [contactId, contacts]);
+
   useEffect(() => {
     if (contactOperationLoading) {
       return () => {
