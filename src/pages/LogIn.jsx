@@ -50,7 +50,7 @@ const LogIn = () => {
   };
 
   return (
-    <Box pt={4} w="100vw" h="100vh" bg="thirdBg" textAlign="center">
+    <Box pt={4} w="100%" h="100vh" bg="thirdBg" textAlign="center">
       <RegistrationTitle>Log In</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik

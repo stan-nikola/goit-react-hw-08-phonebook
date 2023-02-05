@@ -6,6 +6,7 @@ import { Box } from '@chakra-ui/react';
 import { UserMenuButton, UserMenuText } from './UserProfileMenu.styled';
 
 import { BiLogOut } from 'react-icons/bi';
+import { contactsItems } from 'redux/contacts/contactsSlice';
 
 export const UserProfileMenu = () => {
   const { user } = useAuth();
@@ -16,6 +17,7 @@ export const UserProfileMenu = () => {
   const handleLogOut = () => {
     setLogOutLoad(true);
     dispatch(logOut());
+    dispatch(contactsItems([]));
   };
 
   return (

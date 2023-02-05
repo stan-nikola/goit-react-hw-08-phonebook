@@ -8,6 +8,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRout } from './PrivateRoute';
 import { refreshUser, logOut } from 'redux/auth/operations';
 import { Progress } from '@chakra-ui/react';
+import { contactsItems } from 'redux/contacts/contactsSlice';
 
 const Home = lazy(() => import('pages/Home'));
 const Contacts = lazy(() => import('pages/Contacts'));
@@ -22,6 +23,7 @@ export const App = () => {
   useEffect(() => {
     if (!isRememberUser && isRefreshing) {
       dispatch(logOut());
+      dispatch(contactsItems([]));
       return;
     }
   }, [dispatch, isRefreshing, isRememberUser]);
@@ -42,7 +44,6 @@ export const App = () => {
           path="/"
           element={<RestrictedRoute component={Home} redirectTo="/contacts" />}
         />
-        {/* <Route index path="/" element={<Home />} /> */}
         <Route
           path="/contacts"
           element={<PrivateRout component={Contacts} redirectTo="/" />}

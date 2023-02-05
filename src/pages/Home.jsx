@@ -8,7 +8,7 @@ const Home = () => {
       flexDir="column"
       alignItems="center"
       pt={4}
-      w="100vw"
+      w="100%"
       h="100vh"
       bg="thirdBg"
     >
