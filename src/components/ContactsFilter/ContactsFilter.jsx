@@ -16,7 +16,7 @@ export const ContactsFilter = () => {
   const dispatch = useDispatch();
 
   const handleChange = e => {
-    dispatch(contactsFilter(e.currentTarget.value));
+    dispatch(contactsFilter(e.currentTarget.value.toLowerCase()));
   };
   return (
     <Accordion
