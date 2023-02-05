@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.f97cae33.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.17723dff.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.db43df3d.js",
     "static/js/401.867d8f2f.chunk.js": "/goit-react-hw-08-phonebook/static/js/401.867d8f2f.chunk.js",
-    "static/js/458.9b15d507.chunk.js": "/goit-react-hw-08-phonebook/static/js/458.9b15d507.chunk.js",
+    "static/js/458.759b81cf.chunk.js": "/goit-react-hw-08-phonebook/static/js/458.759b81cf.chunk.js",
     "static/js/418.218820c4.chunk.js": "/goit-react-hw-08-phonebook/static/js/418.218820c4.chunk.js",
     "static/js/451.47d7f20e.chunk.js": "/goit-react-hw-08-phonebook/static/js/451.47d7f20e.chunk.js",
     "static/js/72.8b6a00e1.chunk.js": "/goit-react-hw-08-phonebook/static/js/72.8b6a00e1.chunk.js",
@@ -13,9 +13,9 @@
     "static/js/931.050bb79c.chunk.js": "/goit-react-hw-08-phonebook/static/js/931.050bb79c.chunk.js",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.f97cae33.css.map": "/goit-react-hw-08-phonebook/static/css/main.f97cae33.css.map",
-    "main.17723dff.js.map": "/goit-react-hw-08-phonebook/static/js/main.17723dff.js.map",
+    "main.db43df3d.js.map": "/goit-react-hw-08-phonebook/static/js/main.db43df3d.js.map",
     "401.867d8f2f.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/401.867d8f2f.chunk.js.map",
-    "458.9b15d507.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/458.9b15d507.chunk.js.map",
+    "458.759b81cf.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/458.759b81cf.chunk.js.map",
     "418.218820c4.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/418.218820c4.chunk.js.map",
     "451.47d7f20e.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/451.47d7f20e.chunk.js.map",
     "72.8b6a00e1.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/72.8b6a00e1.chunk.js.map",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.f97cae33.css",
-    "static/js/main.17723dff.js"
+    "static/js/main.db43df3d.js"
   ]
 }
