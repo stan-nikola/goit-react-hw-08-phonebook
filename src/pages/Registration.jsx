@@ -60,7 +60,7 @@ const Registration = () => {
 
   return (
     <Box pt={4} w="100%" h="100vh" bg="thirdBg" textAlign="center">
-      <RegistrationTitle>Sign In</RegistrationTitle>
+      <RegistrationTitle>Sign Up</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
           initialValues={initialValues}
@@ -197,7 +197,7 @@ const Registration = () => {
                   colorScheme="teal"
                   width="248px"
                 >
-                  Sign In
+                  Sign Up
                 </Button>
               </VStack>
             </form>

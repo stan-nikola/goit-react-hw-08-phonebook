@@ -168,7 +168,7 @@ const LogIn = () => {
       </Box>
       <Box as="p" mt={3}>
         or
-        <RegisterLogInLink to="/registration">Sign In</RegisterLogInLink>
+        <RegisterLogInLink to="/registration">Sign Up</RegisterLogInLink>
       </Box>
       <ToastContainer />
     </Box>

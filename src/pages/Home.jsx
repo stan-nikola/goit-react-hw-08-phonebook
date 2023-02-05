@@ -16,7 +16,7 @@ const Home = () => {
       <HomeSubTitle>to use this application</HomeSubTitle>
       <HomeLink to="/login">Log In</HomeLink>
       <HomeSubTitle>or</HomeSubTitle>
-      <HomeLink to="/registration">Sign In</HomeLink>
+      <HomeLink to="/registration">Sign Up</HomeLink>
     </Box>
   );
 };
