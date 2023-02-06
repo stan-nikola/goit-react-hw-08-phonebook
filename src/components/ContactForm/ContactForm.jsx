@@ -56,7 +56,9 @@ export const ContactForm = ({ modalToggle, contactId }) => {
     setErrorMessage(null);
 
     const duplicateContactData = contacts.filter(
-      contact => contact.name === name || contact.number === number
+      contact =>
+        contact.name.toLowerCase() === name.toLowerCase() ||
+        contact.number.toLowerCase() === number.toLowerCase()
     );
 
     if (name.length >= 20 || name.length <= 2) {
