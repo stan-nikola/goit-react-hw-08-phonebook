@@ -13,6 +13,9 @@ const Home = () => {
       bg="thirdBg"
     >
       <HomeTitle>Hello</HomeTitle>
+      <HomeSubTitle>
+        This application allows you to store your phone contacts
+      </HomeSubTitle>
       <HomeSubTitle>to use this application</HomeSubTitle>
       <HomeLink to="/login">Log In</HomeLink>
       <HomeSubTitle>or</HomeSubTitle>

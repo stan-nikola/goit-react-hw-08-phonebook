@@ -3,7 +3,7 @@ import { mailFormat, registerSchema } from 'constants/schema';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/auth/operations';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from 'components/hooks';
 import {
   Box,
@@ -37,15 +37,20 @@ const Registration = () => {
   const dispatch = useDispatch();
   const [registerLoad, setRegisterLoad] = useState(false);
   const [passwordValue, setPasswordValue] = useState(0);
-  const { isAuthError } = useAuth();
+  const { authErrorCode } = useAuth();
+
+  const ref = useRef(null);
 
   useEffect(() => {
-    if (isAuthError !== null) {
-      toast.error(`Ups...${isAuthError}`, toastOptionsMain);
+    if (authErrorCode === 400) {
+      toast.error(
+        `User with ${ref.current.values.email} already exist, please choose another email address`,
+        toastOptionsMain
+      );
       dispatch(authError(null));
       setRegisterLoad(false);
     }
-  }, [dispatch, isAuthError]);
+  }, [dispatch, authErrorCode]);
 
   const handleSubmit = ({
     name,
@@ -63,6 +68,7 @@ const Registration = () => {
       <RegistrationTitle>Sign Up</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
+          innerRef={ref}
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={registerSchema}

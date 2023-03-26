@@ -33,15 +33,18 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [registerLoad, setRegisterLoad] = useState(false);
   const [passwordValue, setPasswordValue] = useState(0);
-  const { isAuthError } = useAuth();
+  const { authErrorCode } = useAuth();
 
   useEffect(() => {
-    if (isAuthError !== null) {
-      toast.error(`Ups...${isAuthError}`, toastOptionsMain);
+    if (authErrorCode === 400) {
+      toast.error(
+        'The email address or password is incorrect. Please retry...',
+        toastOptionsMain
+      );
       dispatch(authError(null));
       setRegisterLoad(false);
     }
-  }, [dispatch, isAuthError]);
+  }, [dispatch, authErrorCode]);
 
   const handleSubmit = ({ email, password, rememberMe: isRememberMe }) => {
     setRegisterLoad(true);

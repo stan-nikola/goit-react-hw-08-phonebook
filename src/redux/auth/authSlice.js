@@ -67,6 +67,7 @@ export const authSlice = createSlice({
       // refreshUser
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
+        state.authError = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
@@ -75,6 +76,7 @@ export const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
+        state.authError = null;
       });
   },
 });
@@ -88,7 +90,6 @@ const persistConfig = {
 // const whitelistTransform = createTransform((inboundState, key) => {
 //   // Select values from the route reducer
 //   if ((key === 'rememberUser' || key === 'token') && inboundState) {
-//     console.log('4444');
 //     return pick(inboundState, ['token']);
 //   }
 // });
