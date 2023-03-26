@@ -12,14 +12,14 @@ import {
   ContactBar,
   ContactContainer,
   LoadingProgress,
+  contactsAddBtn,
 } from './PageStyles/Contacts.styled';
 import { useContacts } from 'components/hooks/useContacts';
 
 const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [contactId, setContactId] = useState(null);
-  const { contactOperationLoading } = useContacts();
-
+  const { contactOperationLoading, contacts } = useContacts();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,8 +39,14 @@ const Contacts = () => {
     <ContactContainer>
       <ContactBar>
         <ContactsCount />
-        <ContactsFilter />
-        <AddContactButton modalToggle={modalToggle} />
+        {contacts.length > 0 && <ContactsFilter />}
+
+        {contacts.length > 0 && (
+          <AddContactButton
+            modalToggle={modalToggle}
+            btnStyles={contactsAddBtn}
+          />
+        )}
       </ContactBar>
 
       {contactOperationLoading && <LoadingProgress size="xs" isIndeterminate />}

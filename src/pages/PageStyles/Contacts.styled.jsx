@@ -20,7 +20,7 @@ export const ContactBar = styled.div`
   margin-bottom: ${p => p.theme.space[2]};
 
   @media screen and (min-width: 1024px) {
-    min-width: 400px;
+    min-width: 420px;
   }
 `;
 
@@ -30,3 +30,5 @@ export const LoadingProgress = styled(Progress)`
   left: 0;
   width: 100%;
 `;
+
+export const contactsAddBtn = { w: '100%', height: 14, fontSize: 24 };

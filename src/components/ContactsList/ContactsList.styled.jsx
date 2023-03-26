@@ -77,3 +77,22 @@ export const ContactBtn = styled.button`
   padding: ${p => p.theme.space[2]};
   cursor: pointer;
 `;
+export const NoContactTittle = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  border: ${p => p.theme.borders.none};
+  margin-top: ${p => p.theme.space[3]};
+  padding: ${p => p.theme.space[2]};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.s};
+
+  span {
+    color: ${p => p.theme.colors.buttonActive};
+    padding: 0 ${p => p.theme.space[2]};
+    font-size: ${p => p.theme.fontSizes.m};
+  }
+`;
+
+export const contactListAddBtn = { w: '220px', height: 10, fontSize: 16 };

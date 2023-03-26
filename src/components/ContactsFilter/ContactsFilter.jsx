@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { contactsFilter } from 'redux/contacts/filterSlice';
 import { Input } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
@@ -11,21 +12,18 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 import { FilterHeader, FilterIcon } from './ContactsFilter.styled.';
+import { useContacts } from './../hooks/useContacts';
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
+
+  const { filter } = useContacts();
 
   const handleChange = e => {
     dispatch(contactsFilter(e.currentTarget.value.toLowerCase()));
   };
   return (
-    <Accordion
-      bg="secondaryBg"
-      min-width="320px"
-      mb={1}
-      defaultIndex={[1]}
-      allowMultiple
-    >
+    <Accordion bg="secondaryBg" mb={1} allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton
@@ -53,6 +51,7 @@ export const ContactsFilter = () => {
               onChange={handleChange}
               width="350px"
               variant="filled"
+              value={filter}
               placeholder="Enter name to find"
               p={2}
             />

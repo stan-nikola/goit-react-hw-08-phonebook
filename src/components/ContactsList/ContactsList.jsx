@@ -2,9 +2,18 @@ import { useMemo } from 'react';
 import { useContacts } from 'components/hooks/useContacts';
 
 import { ContactListItem } from './ContactsListItem';
-import { ContactListContainer } from './ContactsList.styled';
+import {
+  ContactListContainer,
+  NoContactTittle,
+  contactListAddBtn,
+} from './ContactsList.styled';
+import { AddContactButton } from './../AddContactButton/AddContactButton';
+import { Box, Button } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { contactsFilter } from 'redux/contacts/filterSlice';
 
 export const ContactsList = ({ modalToggle }) => {
+  const dispatch = useDispatch();
   const { contacts, filter } = useContacts();
 
   const visibleContacts = useMemo(
@@ -13,7 +22,37 @@ export const ContactsList = ({ modalToggle }) => {
     [contacts, filter]
   );
 
-  return (
+  const handleFilterReset = () => {
+    dispatch(contactsFilter(''));
+  };
+
+  return visibleContacts.length < 1 ? (
+    contacts.length < 1 ? (
+      <Box display="flex" flexDirection="column" w="100%" alignItems="center">
+        <NoContactTittle>
+          You don't have contacts yet, to add click the add contact button
+        </NoContactTittle>
+        <AddContactButton
+          modalToggle={modalToggle}
+          btnStyles={contactListAddBtn}
+        />
+      </Box>
+    ) : (
+      <Box display="flex" flexDirection="column" w="100%" alignItems="center">
+        <NoContactTittle>
+          No matches with <span> {filter}</span>
+        </NoContactTittle>
+        <Button
+          onClick={handleFilterReset}
+          borderRadius="none"
+          colorScheme="teal"
+          variant="solid"
+        >
+          Clear
+        </Button>
+      </Box>
+    )
+  ) : (
     <ContactListContainer as="ul" display="flex" flexWrap="wrap" gridGap={2}>
       {visibleContacts.map(contact => (
         <ContactListItem
