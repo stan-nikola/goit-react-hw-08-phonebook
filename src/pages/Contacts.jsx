@@ -20,6 +20,7 @@ const Contacts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [contactId, setContactId] = useState(null);
   const { contactOperationLoading, contacts } = useContacts();
+
   const dispatch = useDispatch();
 
   useEffect(() => {

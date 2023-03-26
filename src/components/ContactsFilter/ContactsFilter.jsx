@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { contactsFilter } from 'redux/contacts/filterSlice';
 import { Input } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
