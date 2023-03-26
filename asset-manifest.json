@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.f97cae33.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.9b05fd25.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.f26d9620.js",
     "static/js/401.03f8b27d.chunk.js": "/goit-react-hw-08-phonebook/static/js/401.03f8b27d.chunk.js",
-    "static/js/458.32579272.chunk.js": "/goit-react-hw-08-phonebook/static/js/458.32579272.chunk.js",
+    "static/js/458.c5665daa.chunk.js": "/goit-react-hw-08-phonebook/static/js/458.c5665daa.chunk.js",
     "static/js/418.3b9344e0.chunk.js": "/goit-react-hw-08-phonebook/static/js/418.3b9344e0.chunk.js",
     "static/js/451.7c7e0fee.chunk.js": "/goit-react-hw-08-phonebook/static/js/451.7c7e0fee.chunk.js",
     "static/js/42.c6e3ab15.chunk.js": "/goit-react-hw-08-phonebook/static/js/42.c6e3ab15.chunk.js",
@@ -12,9 +12,9 @@
     "static/js/931.050bb79c.chunk.js": "/goit-react-hw-08-phonebook/static/js/931.050bb79c.chunk.js",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.f97cae33.css.map": "/goit-react-hw-08-phonebook/static/css/main.f97cae33.css.map",
-    "main.9b05fd25.js.map": "/goit-react-hw-08-phonebook/static/js/main.9b05fd25.js.map",
+    "main.f26d9620.js.map": "/goit-react-hw-08-phonebook/static/js/main.f26d9620.js.map",
     "401.03f8b27d.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/401.03f8b27d.chunk.js.map",
-    "458.32579272.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/458.32579272.chunk.js.map",
+    "458.c5665daa.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/458.c5665daa.chunk.js.map",
     "418.3b9344e0.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/418.3b9344e0.chunk.js.map",
     "451.7c7e0fee.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/451.7c7e0fee.chunk.js.map",
     "42.c6e3ab15.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/42.c6e3ab15.chunk.js.map",
@@ -24,6 +24,6 @@
   },
   "entrypoints": [
     "static/css/main.f97cae33.css",
-    "static/js/main.9b05fd25.js"
+    "static/js/main.f26d9620.js"
   ]
 }
