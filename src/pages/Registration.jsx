@@ -28,23 +28,24 @@ import { FiAlertTriangle } from 'react-icons/fi';
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [registerLoad, setRegisterLoad] = useState(false);
+
+  const { authErrorCode } = useAuth();
+  const dispatch = useDispatch();
+
   const initialValues = {
     name: '',
     email: '',
     password: '',
     rememberMe: 'true',
   };
-  const dispatch = useDispatch();
-  const [registerLoad, setRegisterLoad] = useState(false);
-  const [passwordValue, setPasswordValue] = useState(0);
-  const { authErrorCode } = useAuth();
 
   const ref = useRef(null);
 
   useEffect(() => {
     if (authErrorCode === 400) {
       toast.error(
-        `User with ${ref.current.values.email} already exist, please choose another email address`,
+        `User with ${ref.current?.values.email} already exist, please choose another email address`,
         toastOptionsMain
       );
       dispatch(authError(null));
@@ -64,7 +65,13 @@ const Registration = () => {
   };
 
   return (
-    <Box pt={4} w="100%" h="100vh" bg="thirdBg" textAlign="center">
+    <Box
+      pt={4}
+      w="100%"
+      minH="calc(100vh - 70px)"
+      bg="thirdBg"
+      textAlign="center"
+    >
       <RegistrationTitle>Sign Up</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
@@ -95,7 +102,6 @@ const Registration = () => {
                         if (value.length >= 20 || value.length <= 3) {
                           error = errors.name;
                         }
-
                         return error;
                       }}
                     />
@@ -120,7 +126,6 @@ const Registration = () => {
                       pl={2}
                       validate={value => {
                         let error;
-
                         if (value.match(mailFormat)) {
                           error = errors.email;
                         }
@@ -152,18 +157,15 @@ const Registration = () => {
                         pr="40px"
                         w="248px"
                         validate={value => {
-                          setPasswordValue(value);
                           let error;
-
                           if (value.length < 7) {
                             error = errors.password;
                           }
-
                           return error;
                         }}
                       />
                       <InputRightElement w={10}>
-                        {passwordValue.length > 0 && (
+                        {ref.current?.values.password.length > 0 && (
                           <Button
                             size="sm"
                             w={5}

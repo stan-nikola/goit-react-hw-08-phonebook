@@ -81,9 +81,11 @@ export const NoContactTittle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: baseline;
+  text-align: center;
   width: 100%;
   border: ${p => p.theme.borders.none};
   margin-top: ${p => p.theme.space[3]};
+  margin-bottom: ${p => p.theme.space[3]};
   padding: ${p => p.theme.space[2]};
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.s};

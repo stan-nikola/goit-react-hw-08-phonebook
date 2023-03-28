@@ -9,7 +9,7 @@ const Home = () => {
       alignItems="center"
       pt={4}
       w="100%"
-      h="100vh"
+      minH="calc(100vh - 70px)"
       bg="thirdBg"
     >
       <HomeTitle>Hello</HomeTitle>

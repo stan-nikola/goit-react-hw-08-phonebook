@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Formik, Field } from 'formik';
-import { logInSchema, mailFormat } from 'constants/schema';
+import { logInSchema } from 'constants/schema';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { logIn } from './../redux/auth/operations';
@@ -32,8 +32,10 @@ const LogIn = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [registerLoad, setRegisterLoad] = useState(false);
-  const [passwordValue, setPasswordValue] = useState(0);
+
   const { authErrorCode } = useAuth();
+
+  const ref = useRef(null);
 
   useEffect(() => {
     if (authErrorCode === 400) {
@@ -53,13 +55,20 @@ const LogIn = () => {
   };
 
   return (
-    <Box pt={4} w="100%" h="100vh" bg="thirdBg" textAlign="center">
+    <Box
+      pt={4}
+      w="100%"
+      minH="calc(100vh - 70px)"
+      bg="thirdBg"
+      textAlign="center"
+    >
       <RegistrationTitle>Log In</RegistrationTitle>
       <Box display="flex" justifyContent="center">
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={logInSchema}
+          innerRef={ref}
         >
           {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
@@ -111,18 +120,15 @@ const LogIn = () => {
                         pr="40px"
                         w="248px"
                         validate={value => {
-                          setPasswordValue(value);
                           let error;
-
-                          if (value.match(mailFormat)) {
-                            error = errors.email;
+                          if (value.length < 7) {
+                            error = errors.password;
                           }
-
                           return error;
                         }}
                       />
                       <InputRightElement w={10}>
-                        {passwordValue.length > 0 && (
+                        {ref.current?.values.password.length > 0 && (
                           <Button
                             size="sm"
                             w={5}
@@ -135,7 +141,6 @@ const LogIn = () => {
                         )}
                       </InputRightElement>
                     </InputGroup>
-
                     <ErrorMessage>
                       {<FiAlertTriangle />}
                       {errors.password}

@@ -12,6 +12,7 @@ export const AppBar = () => {
       as="nav"
       p={3}
       pr={3}
+      maxH={70}
       display="flex"
       justifyContent="space-between"
       bg="primary"

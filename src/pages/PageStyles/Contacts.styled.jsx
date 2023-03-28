@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const ContactContainer = styled.div`
   background-color: ${p => p.theme.colors.thirdBg};
-  height: 100vh;
+  min-height: calc(100vh - 70px);
   padding-top: ${p => p.theme.space[2]};
   @media screen and (min-width: 768px) {
     padding-top: ${p => p.theme.space[3]};
