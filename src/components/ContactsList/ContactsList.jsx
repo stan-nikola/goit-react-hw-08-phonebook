@@ -14,7 +14,7 @@ import { contactsFilter } from 'redux/contacts/filterSlice';
 
 export const ContactsList = ({ modalToggle }) => {
   const dispatch = useDispatch();
-  const { contacts, filter } = useContacts();
+  const { contacts, contactOperationLoading, filter } = useContacts();
 
   const visibleContacts = useMemo(
     () =>
@@ -22,28 +22,26 @@ export const ContactsList = ({ modalToggle }) => {
     [contacts, filter]
   );
 
-  const handleFilterReset = () => {
-    dispatch(contactsFilter(''));
-  };
-
   return visibleContacts.length < 1 ? (
     contacts.length < 1 ? (
-      <Box display="flex" flexDirection="column" w="100%" alignItems="center">
-        <NoContactTittle>
-          You don't have contacts yet, to add click the add contact button
-        </NoContactTittle>
-        <AddContactButton
-          modalToggle={modalToggle}
-          btnStyles={contactListAddBtn}
-        />
-      </Box>
+      !contactOperationLoading && (
+        <Box display="flex" flexDirection="column" w="100%" alignItems="center">
+          <NoContactTittle>
+            You don't have contacts yet, to add click the add contact button
+          </NoContactTittle>
+          <AddContactButton
+            modalToggle={modalToggle}
+            btnStyles={contactListAddBtn}
+          />
+        </Box>
+      )
     ) : (
       <Box display="flex" flexDirection="column" w="100%" alignItems="center">
         <NoContactTittle>
           No matches with <span> {filter}</span>
         </NoContactTittle>
         <Button
-          onClick={handleFilterReset}
+          onClick={() => dispatch(contactsFilter(''))}
           borderRadius="none"
           colorScheme="teal"
           variant="solid"

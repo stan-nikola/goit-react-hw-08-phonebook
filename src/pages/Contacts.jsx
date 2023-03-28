@@ -38,10 +38,10 @@ const Contacts = () => {
 
   return (
     <ContactContainer>
+      {contactOperationLoading && <LoadingProgress size="xs" isIndeterminate />}
       <ContactBar>
         <ContactsCount />
         {contacts.length > 0 && <ContactsFilter />}
-
         {contacts.length > 0 && (
           <AddContactButton
             modalToggle={modalToggle}
@@ -49,8 +49,6 @@ const Contacts = () => {
           />
         )}
       </ContactBar>
-
-      {contactOperationLoading && <LoadingProgress size="xs" isIndeterminate />}
       <ContactsList modalToggle={modalToggle} />
       {modalShow && (
         <Modal modalToggle={modalToggle}>
