@@ -31,9 +31,8 @@ const LogIn = () => {
   const initialValues = { email: '', password: '', rememberMe: 'true' };
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [registerLoad, setRegisterLoad] = useState(false);
 
-  const { authErrorCode } = useAuth();
+  const { authErrorCode, isAuthLoading } = useAuth();
 
   const ref = useRef(null);
 
@@ -44,12 +43,10 @@ const LogIn = () => {
         toastOptionsMain
       );
       dispatch(authError(null));
-      setRegisterLoad(false);
     }
   }, [dispatch, authErrorCode]);
 
   const handleSubmit = ({ email, password, rememberMe: isRememberMe }) => {
-    setRegisterLoad(true);
     dispatch(rememberUser(isRememberMe));
     dispatch(logIn({ email, password }));
   };
@@ -159,8 +156,8 @@ const LogIn = () => {
                 </Box>
 
                 <Button
-                  isDisabled={registerLoad}
-                  isLoading={registerLoad}
+                  isDisabled={isAuthLoading}
+                  isLoading={isAuthLoading}
                   loadingText="Working..."
                   borderRadius="none"
                   type="submit"

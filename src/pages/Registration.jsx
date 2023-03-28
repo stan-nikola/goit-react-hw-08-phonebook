@@ -28,9 +28,8 @@ import { FiAlertTriangle } from 'react-icons/fi';
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [registerLoad, setRegisterLoad] = useState(false);
 
-  const { authErrorCode } = useAuth();
+  const { authErrorCode, isAuthLoading } = useAuth();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -49,7 +48,6 @@ const Registration = () => {
         toastOptionsMain
       );
       dispatch(authError(null));
-      setRegisterLoad(false);
     }
   }, [dispatch, authErrorCode]);
 
@@ -59,7 +57,6 @@ const Registration = () => {
     password,
     rememberMe: isRememberMe,
   }) => {
-    setRegisterLoad(true);
     dispatch(register({ name, email, password }));
     dispatch(rememberUser(isRememberMe));
   };
@@ -197,8 +194,8 @@ const Registration = () => {
                 </Box>
 
                 <Button
-                  isDisabled={registerLoad}
-                  isLoading={registerLoad}
+                  isDisabled={isAuthLoading}
+                  isLoading={isAuthLoading}
                   loadingText="Working..."
                   borderRadius="none"
                   type="submit"

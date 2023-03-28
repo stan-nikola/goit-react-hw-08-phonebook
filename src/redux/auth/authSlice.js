@@ -13,6 +13,7 @@ export const authSlice = createSlice({
     authError: null,
     rememberUser: true,
     isLoggedIn: false,
+    isLoggedInLoading: false,
     isRefreshing: false,
   },
   reducers: {
@@ -28,28 +29,34 @@ export const authSlice = createSlice({
     builder
       .addCase(register.pending, (state, action) => {
         state.authError = null;
+        state.isLoggedInLoading = true;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoggedInLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
         state.authError = action.payload;
+        state.isLoggedInLoading = false;
       })
       // register
 
       //logIn
       .addCase(logIn.pending, (state, action) => {
         state.authError = null;
+        state.isLoggedInLoading = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isLoggedInLoading = false;
       })
       .addCase(logIn.rejected, (state, action) => {
         state.authError = action.payload;
+        state.isLoggedInLoading = false;
       })
       //logIn
 
